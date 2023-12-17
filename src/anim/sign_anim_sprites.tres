@@ -1,0 +1,38 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://bfss4cgpnj1jf"]
+
+[ext_resource type="Texture2D" uid="uid://cul1u18eajk7f" path="res://art/sign_anim/sign_anim-1.png" id="1_70rja"]
+[ext_resource type="Texture2D" uid="uid://c5g3hj20hnid3" path="res://art/sign_anim/sign_anim-2.png" id="2_s2ehj"]
+[ext_resource type="Texture2D" uid="uid://eseefjk88d5j" path="res://art/sign_anim/sign_anim-3.png" id="3_dwj10"]
+[ext_resource type="Texture2D" uid="uid://2g0hkx63rp7f" path="res://art/sign_anim/sign_anim-4.png" id="4_u7tfu"]
+[ext_resource type="Texture2D" uid="uid://i3kwg5pqqo2b" path="res://art/sign_anim/sign_anim-5.png" id="5_mwl3f"]
+[ext_resource type="Texture2D" uid="uid://csxlxiop84hgk" path="res://art/sign_anim/sign_anim-6.png" id="6_if15c"]
+[ext_resource type="Texture2D" uid="uid://ckjx0frsbfe8u" path="res://art/sign_anim/sign_anim-7.png" id="7_axe2w"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_70rja")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_s2ehj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dwj10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_u7tfu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_mwl3f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_if15c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_axe2w")
+}],
+"loop": true,
+"name": &"sign_anim_sprites",
+"speed": 5.0
+}]

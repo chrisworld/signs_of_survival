@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nv50tl2levtt"
-path="res://.godot/imported/Cavemen_sitting.png-c6573c0d637c2b1e37b5da0b44ed9076.ctex"
+uid="uid://5rmsd3ydn1qt"
+path="res://.godot/imported/Cavemen_blinking.png-93e1158ae7b99adaa3a9d7f77324d620.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/Cavemen/Cavemen_sitting.png"
-dest_files=["res://.godot/imported/Cavemen_sitting.png-c6573c0d637c2b1e37b5da0b44ed9076.ctex"]
+source_file="res://art/Cavemen/Cavemen_blinking.png"
+dest_files=["res://.godot/imported/Cavemen_blinking.png-93e1158ae7b99adaa3a9d7f77324d620.ctex"]
 
 [params]
 

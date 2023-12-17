@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://darymjq32xhe2"]
+[gd_scene load_steps=6 format=3 uid="uid://darymjq32xhe2"]
 
 [ext_resource type="PackedScene" uid="uid://0iccmywhl76q" path="res://prefabs/sign.tscn" id="1_8kfhy"]
 [ext_resource type="Script" path="res://scripts/sign_world.gd" id="1_tahyx"]
 [ext_resource type="PackedScene" uid="uid://ck3whmkemwclf" path="res://prefabs/ground.tscn" id="2_nw6t4"]
 [ext_resource type="Texture2D" uid="uid://cn4t7fu4vfjrk" path="res://art/sign_static_right_side.png" id="3_u4y7a"]
+[ext_resource type="PackedScene" uid="uid://bd11ec50fhc2a" path="res://prefabs/character.tscn" id="5_46d2p"]
 
 [node name="sign_world" type="Node2D"]
 position = Vector2(482, 178)
@@ -20,5 +21,8 @@ texture = ExtResource("3_u4y7a")
 [node name="ground" parent="." instance=ExtResource("2_nw6t4")]
 position = Vector2(13, 390)
 scale = Vector2(4.64, 1)
+
+[node name="character" parent="." instance=ExtResource("5_46d2p")]
+position = Vector2(-33, 336)
 
 [connection signal="sign_falls" from="sign" to="." method="_on_sign_sign_falls"]

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bd11ec50fhc2a"]
+
+[ext_resource type="Script" path="res://scripts/character.gd" id="1_r3cvs"]
+[ext_resource type="SpriteFrames" uid="uid://dt8y23sbwd1tc" path="res://anim/cavemen_sprite_frames.tres" id="2_gicsh"]
+
+[node name="character" type="Node2D"]
+script = ExtResource("1_r3cvs")
+
+[node name="sprites" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_gicsh")
+animation = &"cavemen_sitting"
+
+[node name="blink_timer" type="Timer" parent="."]
+
+[node name="blink_duration_timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="blink_timer" to="." method="_on_blink_timer_timeout"]
+[connection signal="timeout" from="blink_duration_timer" to="." method="_on_blink_duration_timers_timeout"]

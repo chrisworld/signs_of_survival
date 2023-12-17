@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://12qgse0h2mtc"]
+
+[ext_resource type="PackedScene" uid="uid://cwurhf25p3rhr" path="res://prefabs/rigid_ghost.res" id="1_l2koo"]
+
+[node name="signs_of_survival" type="Node2D"]
+
+[node name="rigid_ghost" parent="." instance=ExtResource("1_l2koo")]
+position = Vector2(215, 331)

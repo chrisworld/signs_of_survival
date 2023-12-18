@@ -30,7 +30,6 @@ func _ready():
 	
 	# reset
 	num_clicks = 0
-	disable_clicks_flag = false
 	sign_sprite_anim = $sign_anim
 	num_frames = sign_sprite_anim.sprite_frames.get_frame_count("sign_anim_sprites")
 
@@ -54,13 +53,19 @@ func _max_number_of_clicks_reached():
 	sign_falls.emit()
 	
 	# no clicks
-	disable_clicks_flag = false
+	disable_clicks_flag = true
+
+	# actual frame
+	actual_frame = num_frames - 1
 
 	# last frame
-	sign_sprite_anim.frame = num_frames - 1
+	sign_sprite_anim.frame = actual_frame
+	
+	# add a little impulse
+	self.apply_torque_impulse(-0.3)
 	
 
-func _on_click_area_input_event(_viewport, event, _shape_idx):
+func _on_sign_area_input_event(_viewport, event, _shape_idx):
 	
 	# no clicks if disabled
 	if disable_clicks_flag: return
@@ -92,7 +97,6 @@ func _on_click_area_input_event(_viewport, event, _shape_idx):
 		
 		# set frame
 		sign_sprite_anim.frame = actual_frame
-		print("actual frame: ", actual_frame)
 
 
 # --

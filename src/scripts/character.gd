@@ -1,6 +1,7 @@
 extends Node2D
 
 signal last_generation
+signal dying
 
 # generations vars
 var generation = 0
@@ -25,7 +26,6 @@ const blink_duration_min = 0.2
 const blink_duration_var = 0.5
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 
 	# inits
@@ -62,9 +62,18 @@ func new_generation():
 
 
 func set_state_dying():
+
+	# is already dying
+	if is_dying: return
+
+	# set anims
 	sprites.animation = anim_cavemen_dying
 	sprites.frame = generation
+
+	# var and signal
 	is_dying = true
+	dying.emit()
+	print("dies")
 
 
 func reset_state_dying():
@@ -104,3 +113,10 @@ func _on_blink_duration_timers_timeout():
 	# change to sitting anim
 	sprites.animation = anim_cavemen_sitting
 	sprites.frame = generation
+
+
+func _on_area_2d_area_entered(_area):
+	
+	# init dying
+	self.set_state_dying()
+

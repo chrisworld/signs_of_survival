@@ -1,11 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://12qgse0h2mtc"]
+[gd_scene load_steps=2 format=3 uid="uid://12qgse0h2mtc"]
 
 [ext_resource type="PackedScene" uid="uid://darymjq32xhe2" path="res://scenes/sign_world.tscn" id="1_jygnp"]
-[ext_resource type="PackedScene" uid="uid://baeh41nsujt3d" path="res://scenes/time_out.tscn" id="2_bdnjo"]
 
 [node name="signs_of_survival" type="Node2D"]
 
 [node name="sign_world" parent="." instance=ExtResource("1_jygnp")]
-
-[node name="time_out" parent="." instance=ExtResource("2_bdnjo")]
-starve_time = 60

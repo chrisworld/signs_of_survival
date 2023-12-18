@@ -2,15 +2,14 @@ extends Node2D
 
 signal starved
 
-var timer = null
-var label_time = null
+# refs
+@onready var timer = $Timer
+@onready var label_time = $canvas/label_starve/label_starve_time
 
 @export var starve_time = 60
 
 
 func _ready():
-	timer = $Timer
-	label_time = $canvas/label_starve/label_starve_time
 	timer.start(starve_time)
 
 

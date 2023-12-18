@@ -18,6 +18,7 @@ var is_dying = false
 const anim_cavemen_sitting = "cavemen_sitting"
 const anim_cavemen_blinking = "cavemen_blinking"
 const anim_cavemen_dying = "cavemen_dying"
+const anim_cavemen_dying_2 = "cavemen_dying-2"
 
 # base blink time
 const blink_time_min = 1.0
@@ -74,6 +75,8 @@ func set_state_dying():
 	is_dying = true
 	dying.emit()
 	print("dies")
+	# start new blink timer
+	blink_timer.start(2 * blink_duration_min)
 
 
 func reset_state_dying():
@@ -88,7 +91,14 @@ func reset_state_dying():
 func _on_blink_timer_timeout():
 
 	# return if dying
-	if is_dying: return
+	if is_dying: 
+		# start new blink timer
+		blink_timer.start(2 * blink_duration_min)
+		# set duration of blinking
+		blink_duration_timer.start(blink_duration_min)
+		sprites.animation = anim_cavemen_dying_2
+		sprites.frame = generation
+		return
 
 	# new blink time
 	var new_blink_time = blink_time_min + randf() * blink_time_var
@@ -108,7 +118,10 @@ func _on_blink_timer_timeout():
 func _on_blink_duration_timers_timeout():
 
 	# return if dying
-	if is_dying: return
+	if is_dying: 
+		sprites.animation = anim_cavemen_dying
+		sprites.frame = generation
+		return
 
 	# change to sitting anim
 	sprites.animation = anim_cavemen_sitting

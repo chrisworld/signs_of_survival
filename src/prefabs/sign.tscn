@@ -6,21 +6,19 @@
 
 [node name="sign" type="RigidBody2D"]
 mass = 50.0
-inertia = 2.0
 physics_material_override = ExtResource("1_ya6e7")
 gravity_scale = 0.25
+inertia = 2.0
 freeze = true
 script = ExtResource("1_4pyq8")
 max_num_clicks = 14
 
 [node name="sign_anim" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(3, 3)
 sprite_frames = ExtResource("3_hpvai")
 animation = &"sign_anim_sprites"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-scale = Vector2(3, 3)
 polygon = PackedVector2Array(-17, 24, -0.333332, 13.3333, 14.3333, 5, 7, -25, -46, 2, -33, 25)
 
 [node name="sign_area" type="Area2D" parent="."]

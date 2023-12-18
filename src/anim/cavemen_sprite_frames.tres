@@ -1,8 +1,10 @@
-[gd_resource type="SpriteFrames" load_steps=40 format=3 uid="uid://dt8y23sbwd1tc"]
+[gd_resource type="SpriteFrames" load_steps=56 format=3 uid="uid://dt8y23sbwd1tc"]
 
+[ext_resource type="Texture2D" uid="uid://blkgtm6y4bldl" path="res://art/Cavemen/Cavemen_dying-2.png" id="1_dxvr6"]
 [ext_resource type="Texture2D" uid="uid://5rmsd3ydn1qt" path="res://art/Cavemen/Cavemen_blinking.png" id="1_r1tjk"]
 [ext_resource type="Texture2D" uid="uid://nv50tl2levtt" path="res://art/Cavemen/Cavemen_sitting.png" id="1_rx2wf"]
 [ext_resource type="Texture2D" uid="uid://dv4st4r2ab564" path="res://art/Cavemen/Cavemen_dying.png" id="2_o0tc3"]
+[ext_resource type="Texture2D" uid="uid://vfnrmmcoqrq2" path="res://art/Cavemen/Cavemen_shadow.png" id="4_pl35o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rgh5g"]
 atlas = ExtResource("1_r1tjk")
@@ -99,6 +101,62 @@ region = Rect2(150, 150, 75, 75)
 [sub_resource type="AtlasTexture" id="AtlasTexture_6sici"]
 atlas = ExtResource("2_o0tc3")
 region = Rect2(225, 150, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nnms"]
+atlas = ExtResource("1_dxvr6")
+region = Rect2(0, 0, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ec2pt"]
+atlas = ExtResource("1_dxvr6")
+region = Rect2(75, 0, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgok0"]
+atlas = ExtResource("1_dxvr6")
+region = Rect2(150, 0, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ncxo"]
+atlas = ExtResource("1_dxvr6")
+region = Rect2(225, 0, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4k44n"]
+atlas = ExtResource("1_dxvr6")
+region = Rect2(0, 75, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85jdx"]
+atlas = ExtResource("1_dxvr6")
+region = Rect2(75, 75, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wmlia"]
+atlas = ExtResource("1_dxvr6")
+region = Rect2(150, 75, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t0yjn"]
+atlas = ExtResource("1_dxvr6")
+region = Rect2(225, 75, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlrps"]
+atlas = ExtResource("1_dxvr6")
+region = Rect2(0, 150, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2y4lb"]
+atlas = ExtResource("1_dxvr6")
+region = Rect2(75, 150, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqiq4"]
+atlas = ExtResource("1_dxvr6")
+region = Rect2(150, 150, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5amrl"]
+atlas = ExtResource("1_dxvr6")
+region = Rect2(225, 150, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8elv"]
+atlas = ExtResource("4_pl35o")
+region = Rect2(0, 0, 75, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ncb3d"]
+atlas = ExtResource("4_pl35o")
+region = Rect2(75, 0, 75, 75)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_82haa"]
 atlas = ExtResource("1_rx2wf")
@@ -230,6 +288,58 @@ animations = [{
 }],
 "loop": true,
 "name": &"cavemen_dying",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5nnms")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ec2pt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cgok0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ncxo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4k44n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_85jdx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wmlia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t0yjn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nlrps")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2y4lb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqiq4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5amrl")
+}],
+"loop": true,
+"name": &"cavemen_dying-2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8elv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ncb3d")
+}],
+"loop": true,
+"name": &"cavemen_shadow",
 "speed": 5.0
 }, {
 "frames": [{

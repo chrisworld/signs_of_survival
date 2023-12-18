@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://uqov3kthysr8"]
+
+[ext_resource type="Script" path="res://scripts/cutscene_test.gd" id="1_tfegu"]
+[ext_resource type="PackedScene" uid="uid://dh6o5h3dcv6d5" path="res://prefabs/cutscene.tscn" id="2_w72cy"]
+
+[node name="cutscene_test" type="Node2D"]
+script = ExtResource("1_tfegu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_left = 474.0
+offset_top = 512.0
+offset_right = 605.0
+offset_bottom = 543.0
+text = "make transition"
+
+[node name="cutscene" parent="." instance=ExtResource("2_w72cy")]
+
+[connection signal="button_down" from="CanvasLayer/Button" to="." method="_on_button_button_down"]

@@ -2,17 +2,20 @@ extends Node2D
 
 signal last_generation
 signal dying
+signal dead
 
 # generations vars
 var generation = 0
 var max_generations = 0
 var is_blinking = false
 var is_dying = false
+var is_dead = false
 
 # refs
 @onready var sprites = $sprites 
 @onready var blink_timer = $blink_timer
 @onready var blink_duration_timer = $blink_duration_timer
+@onready var dead_timer = $dead_timer
 
 # anim names
 const anim_cavemen_sitting = "cavemen_sitting"
@@ -25,23 +28,19 @@ const blink_time_min = 1.0
 const blink_time_var = 3.0
 const blink_duration_min = 0.2
 const blink_duration_var = 0.5
+const dying_time = 2.0
 
 
 func _ready():
 
 	# inits
 	generation = 0
-	is_blinking = false
-
-	# set frame
-	sprites.frame = generation
-	sprites.animation = anim_cavemen_sitting
 
 	# get all generations
 	max_generations = sprites.sprite_frames.get_frame_count(anim_cavemen_sitting)
 
-	# start blink timer
-	blink_timer.start(blink_time_min)
+	# reset character
+	self._character_reset()
 
 
 # --
@@ -52,8 +51,8 @@ func new_generation():
 	# add generation
 	generation += 1
 
-	# update frame
-	sprites.frame = generation
+	# init character
+	self._character_reset()
 
 	# determine last generation
 	if generation < max_generations: return
@@ -78,6 +77,9 @@ func set_state_dying():
 	# start new blink timer
 	blink_timer.start(2 * blink_duration_min)
 
+	# dead timer
+	dead_timer.start(dying_time)
+
 
 func reset_state_dying():
 	sprites.animation = anim_cavemen_sitting
@@ -87,6 +89,21 @@ func reset_state_dying():
 
 # --
 # private methods
+
+func _character_reset():
+
+	# alive state
+	is_blinking = false
+	is_dying = false
+	is_dead = false
+
+	# set frame
+	sprites.frame = generation
+	sprites.animation = anim_cavemen_sitting
+
+	# start blink timer
+	blink_timer.start(blink_time_min)
+
 
 func _on_blink_timer_timeout():
 
@@ -115,7 +132,7 @@ func _on_blink_timer_timeout():
 	sprites.frame = generation
 
 
-func _on_blink_duration_timers_timeout():
+func _on_blink_duration_timer_timeout():
 
 	# return if dying
 	if is_dying: 
@@ -128,8 +145,19 @@ func _on_blink_duration_timers_timeout():
 	sprites.frame = generation
 
 
-func _on_area_2d_area_entered(_area):
+func _on_body_area_entered(_area):
 	
 	# init dying
 	self.set_state_dying()
 
+
+func _on_dead_timer_timeout():
+
+	# flags
+	is_dead = true
+
+	# signal
+	dead.emit()
+
+	# end dead timer
+	dead_timer.stop()

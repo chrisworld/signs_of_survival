@@ -31,8 +31,40 @@ func _ready():
 	# make default invisible
 	self.visible = false
 
-	# blackout labels invisible
-	self._make_blackout_labels_invisible()
+	# reset
+	self._reset()
+
+
+func _process(delta):
+
+	# do something if cutscene runs
+	if not cutscene_play_flag: return
+
+	# no transition marked
+	if not is_transition_dark and not is_transition_light: return
+
+	# get actual alpha
+	var alpha = blackout_rect.color.a
+
+	# do transition (transition dark is positive)
+	alpha += delta * transition_speed * (1 if is_transition_dark else -1)
+
+	# fulliness not guaranteed
+	is_full_dark = false
+	is_full_light = false
+
+	# limits
+	if alpha < 0.0:
+		alpha = 0.0
+		self._full_light_reached()
+
+	elif alpha > 1.0:
+		alpha = 1.0
+		self._full_dark_reached()
+
+	# set alpha value
+	blackout_rect.color.a = alpha
+
 
 
 # --
@@ -56,6 +88,29 @@ func cutscene_play():
 # --
 # private functions
 
+func _reset():
+
+	# invisible
+	self.visible = false
+
+	# blackout labels invisible
+	self._make_blackout_labels_invisible()
+
+	# play flag
+	cutscene_play_flag = false
+
+	# transition vars
+	is_transition_dark = false
+	is_transition_light = false
+
+	# full states
+	is_full_dark = false
+	is_full_light = true
+
+	# full dark iterations
+	full_dark_mode_iterations = 0
+
+
 func _make_blackout_labels_invisible():
 
 	# make blackout labels unvisible
@@ -72,7 +127,7 @@ func _transit_to_light():
 	self._make_blackout_labels_invisible()
 
 
-func _full_dark_rached():
+func _full_dark_reached():
 
 	# set flags
 	is_transition_dark = false
@@ -114,46 +169,10 @@ func _full_dark_mode():
 	full_dark_mode_iterations = 0
 
 
-func _full_light_rached():
-
-	# set flags
-	is_transition_light = false
-	is_full_light = true
-
-	# full play done
-	cutscene_play_flag = false
-	self.visible = false
+func _full_light_reached():
 
 	# signal
 	cutscene_finished.emit()
 
-
-func _process(delta):
-
-	# do something if cutscene runs
-	if not cutscene_play_flag: return
-
-	# no transition marked
-	if not is_transition_dark and not is_transition_light: return
-
-	# get actual alpha
-	var alpha = blackout_rect.color.a
-
-	# do transition (transition dark is positive)
-	alpha += delta * transition_speed * (1 if is_transition_dark else -1)
-
-	# fulliness not guaranteed
-	is_full_dark = false
-	is_full_light = false
-
-	# limits
-	if alpha < 0.0:
-		alpha = 0.0
-		self._full_light_rached()
-
-	elif alpha > 1.0:
-		alpha = 1.0
-		self._full_dark_rached()
-
-	# set alpha value
-	blackout_rect.color.a = alpha
+	# reset cutscene
+	self._reset()

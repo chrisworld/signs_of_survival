@@ -1,14 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://0iccmywhl76q"]
+[gd_scene load_steps=5 format=3 uid="uid://0iccmywhl76q"]
 
 [ext_resource type="Script" path="res://scripts/sign.gd" id="1_4pyq8"]
 [ext_resource type="PhysicsMaterial" uid="uid://oavh7jculipf" path="res://materials/sign_physics_material.tres" id="1_ya6e7"]
 [ext_resource type="SpriteFrames" uid="uid://bfss4cgpnj1jf" path="res://anim/sign_anim_sprites.tres" id="3_hpvai"]
 
-[node name="sign" type="RigidBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trxjc"]
+size = Vector2(100.667, 25.6667)
+
+[node name="sign_moving_part" type="RigidBody2D"]
 mass = 50.0
 physics_material_override = ExtResource("1_ya6e7")
 gravity_scale = 0.25
-inertia = 2.0
 freeze = true
 script = ExtResource("1_4pyq8")
 max_num_clicks = 14
@@ -19,12 +21,13 @@ sprite_frames = ExtResource("3_hpvai")
 animation = &"sign_anim_sprites"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-17, 24, -0.333332, 13.3333, 14.3333, 5, 7, -25, -46, 2, -33, 25)
+polygon = PackedVector2Array(72, 38, 72, -34, -116, -34, -146, 0, -117, 38)
 
 [node name="sign_area" type="Area2D" parent="."]
 scale = Vector2(3, 3)
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="sign_area"]
-polygon = PackedVector2Array(-18, 24, -1, 13, 10, 6, 18, 6, 27, 3, 45, 3, 45, -25, 8, -25, -38, -5, -46, 2, -33, 25)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sign_area"]
+position = Vector2(-0.333336, 0.166667)
+shape = SubResource("RectangleShape2D_trxjc")
 
 [connection signal="input_event" from="sign_area" to="." method="_on_sign_area_input_event"]

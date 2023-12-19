@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdkgnf2cy82tj"]
+
+[ext_resource type="Theme" uid="uid://sffvt1lmxtj8" path="res://themes/button_theme.tres" id="1_hdmld"]
+[ext_resource type="LabelSettings" uid="uid://cc4luhxpmp6qc" path="res://themes/my_label_settings.tres" id="1_w4ihy"]
+[ext_resource type="SpriteFrames" uid="uid://dt8y23sbwd1tc" path="res://anim/cavemen_sprite_frames.tres" id="3_fq5y8"]
+
+[node name="credits" type="Node2D"]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 465.0
+offset_top = 229.0
+offset_right = 714.0
+offset_bottom = 367.0
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HSplitContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HSplitContainer/VBoxContainer"]
+layout_mode = 2
+text = "Gartenschläfer:"
+label_settings = ExtResource("1_w4ihy")
+
+[node name="Label2" type="Label" parent="VBoxContainer/HSplitContainer/VBoxContainer"]
+layout_mode = 2
+text = "Eworhard:"
+label_settings = ExtResource("1_w4ihy")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HSplitContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HSplitContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Programming"
+label_settings = ExtResource("1_w4ihy")
+
+[node name="Label2" type="Label" parent="VBoxContainer/HSplitContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Art"
+label_settings = ExtResource("1_w4ihy")
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_hdmld")
+text = "back"
+
+[node name="gartenschlaefer_cavemen" type="AnimatedSprite2D" parent="."]
+position = Vector2(380, 240)
+sprite_frames = ExtResource("3_fq5y8")
+animation = &"cavemen_blinking"
+frame = 2
+
+[node name="eworhard_cavemen" type="AnimatedSprite2D" parent="."]
+position = Vector2(380, 320)
+sprite_frames = ExtResource("3_fq5y8")
+animation = &"cavemen_sitting"
+frame = 6

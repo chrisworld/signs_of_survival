@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://darymjq32xhe2"]
+[gd_scene load_steps=9 format=3 uid="uid://darymjq32xhe2"]
 
 [ext_resource type="PackedScene" uid="uid://0iccmywhl76q" path="res://prefabs/sign.tscn" id="1_8kfhy"]
 [ext_resource type="Script" path="res://scripts/sign_world.gd" id="1_tahyx"]
@@ -6,26 +6,30 @@
 [ext_resource type="Texture2D" uid="uid://cn4t7fu4vfjrk" path="res://art/sign_static_right_side.png" id="3_u4y7a"]
 [ext_resource type="PackedScene" uid="uid://bd11ec50fhc2a" path="res://prefabs/character.tscn" id="5_46d2p"]
 [ext_resource type="LabelSettings" uid="uid://cc4luhxpmp6qc" path="res://themes/my_label_settings.tres" id="6_e6rxa"]
-[ext_resource type="PackedScene" uid="uid://baeh41nsujt3d" path="res://scenes/time_out.tscn" id="7_6vdgf"]
+[ext_resource type="PackedScene" uid="uid://baeh41nsujt3d" path="res://scenes/starving_timer.tscn" id="7_6vdgf"]
+[ext_resource type="PackedScene" uid="uid://dh6o5h3dcv6d5" path="res://prefabs/cutscene.tscn" id="8_2um15"]
 
 [node name="sign_world" type="Node2D"]
-position = Vector2(482, 178)
 script = ExtResource("1_tahyx")
 
-[node name="sign" parent="." instance=ExtResource("1_8kfhy")]
-max_num_clicks = 5
+[node name="sign_position_marker" type="Marker2D" parent="."]
+position = Vector2(480, 160)
+
+[node name="sign_moving_part" parent="." instance=ExtResource("1_8kfhy")]
+position = Vector2(480, 160)
+max_num_clicks = 25
 
 [node name="sign_static_part" type="Sprite2D" parent="."]
-visible = false
 texture_filter = 1
+position = Vector2(480, 160)
 texture = ExtResource("3_u4y7a")
 
 [node name="ground" parent="." instance=ExtResource("2_nw6t4")]
-position = Vector2(14, 402)
+position = Vector2(540, 560)
 scale = Vector2(9.276, 2)
 
 [node name="character" parent="." instance=ExtResource("5_46d2p")]
-position = Vector2(-33, 336)
+position = Vector2(440, 500)
 
 [node name="canvas" type="CanvasLayer" parent="."]
 
@@ -38,8 +42,14 @@ offset_bottom = 355.0
 text = "Wat-ta-cch ouu-uut!!!!"
 label_settings = ExtResource("6_e6rxa")
 
-[node name="time_out" parent="." instance=ExtResource("7_6vdgf")]
-starve_time = 60
+[node name="cutscene" parent="." instance=ExtResource("8_2um15")]
 
-[connection signal="sign_falls" from="sign" to="." method="_on_sign_sign_falls"]
-[connection signal="starved" from="time_out" to="." method="_on_time_out_starved"]
+[node name="starving_timer" parent="." instance=ExtResource("7_6vdgf")]
+starve_time = 30
+
+[connection signal="sign_falls" from="sign_moving_part" to="." method="_on_sign_sign_falls"]
+[connection signal="dead" from="character" to="." method="_on_character_dead"]
+[connection signal="dying" from="character" to="." method="_on_character_dying"]
+[connection signal="cutscene_finished" from="cutscene" to="." method="_on_cutscene_cutscene_finished"]
+[connection signal="cutscene_full_dark" from="cutscene" to="." method="_on_cutscene_cutscene_full_dark"]
+[connection signal="starved" from="starving_timer" to="." method="_on_starving_timer_starved"]

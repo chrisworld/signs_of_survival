@@ -8,13 +8,30 @@ script = ExtResource("1_tfegu")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Button" type="Button" parent="CanvasLayer"]
-offset_left = 474.0
-offset_top = 512.0
-offset_right = 605.0
-offset_bottom = 543.0
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+offset_left = 422.0
+offset_top = 482.0
+offset_right = 783.0
+offset_bottom = 513.0
+
+[node name="Button" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
 text = "make transition"
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+item_count = 2
+selected = 0
+popup/item_0/text = "next gen"
+popup/item_0/id = 0
+popup/item_1/text = "loose final"
+popup/item_1/id = 1
 
 [node name="cutscene" parent="." instance=ExtResource("2_w72cy")]
 
-[connection signal="button_down" from="CanvasLayer/Button" to="." method="_on_button_button_down"]
+[connection signal="button_down" from="CanvasLayer/HBoxContainer/Button" to="." method="_on_button_button_down"]
+[connection signal="item_selected" from="CanvasLayer/HBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]

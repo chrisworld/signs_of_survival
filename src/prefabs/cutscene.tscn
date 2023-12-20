@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dh6o5h3dcv6d5"]
+[gd_scene load_steps=6 format=3 uid="uid://dh6o5h3dcv6d5"]
 
 [ext_resource type="Script" path="res://scripts/cutscene.gd" id="1_m1pff"]
 [ext_resource type="LabelSettings" uid="uid://21ceqv5ycliv" path="res://themes/big_label_settings.tres" id="2_kid6a"]
 [ext_resource type="LabelSettings" uid="uid://cc4luhxpmp6qc" path="res://themes/my_label_settings.tres" id="3_cmrhe"]
+[ext_resource type="LabelSettings" uid="uid://c14nasa0o851q" path="res://themes/big_r_label_settings.tres" id="4_4fyj1"]
+[ext_resource type="LabelSettings" uid="uid://d3e7yd0r2rti5" path="res://themes/my_r_label_settings.tres" id="5_d5fi1"]
 
 [node name="cutscene" type="CanvasLayer"]
 script = ExtResource("1_m1pff")
@@ -16,20 +18,50 @@ color = Color(0, 0, 0, 0)
 
 [node name="full_dark_timer" type="Timer" parent="."]
 
-[node name="blackout_labels" type="VBoxContainer" parent="."]
+[node name="blackout_labels_next_generation" type="VBoxContainer" parent="."]
 offset_left = 363.0
 offset_top = 216.0
 offset_right = 774.0
 offset_bottom = 326.0
 
-[node name="t1" type="Label" parent="blackout_labels"]
+[node name="t1" type="Label" parent="blackout_labels_next_generation"]
 layout_mode = 2
 text = "You Lose..."
 label_settings = ExtResource("2_kid6a")
 horizontal_alignment = 1
 
-[node name="t2" type="Label" parent="blackout_labels"]
+[node name="t2" type="Label" parent="blackout_labels_next_generation"]
 layout_mode = 2
 text = "but a new generation awaits"
 label_settings = ExtResource("3_cmrhe")
+horizontal_alignment = 1
+
+[node name="blackout_labels_last_generation" type="VBoxContainer" parent="."]
+offset_left = 320.0
+offset_top = 216.0
+offset_right = 814.0
+offset_bottom = 326.0
+
+[node name="t1" type="Label" parent="blackout_labels_last_generation"]
+layout_mode = 2
+text = "You Lose..."
+label_settings = ExtResource("4_4fyj1")
+horizontal_alignment = 1
+
+[node name="t2" type="Label" parent="blackout_labels_last_generation"]
+layout_mode = 2
+text = "Sorry this time for once ..."
+label_settings = ExtResource("5_d5fi1")
+horizontal_alignment = 1
+
+[node name="t3" type="Label" parent="blackout_labels_last_generation"]
+layout_mode = 2
+text = "... and for all ..."
+label_settings = ExtResource("5_d5fi1")
+horizontal_alignment = 1
+
+[node name="t4" type="Label" parent="blackout_labels_last_generation"]
+layout_mode = 2
+text = "?"
+label_settings = ExtResource("5_d5fi1")
 horizontal_alignment = 1

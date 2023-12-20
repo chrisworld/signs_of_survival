@@ -33,18 +33,28 @@ const dying_time = 2.0
 
 func _ready():
 
-	# inits
-	generation = 0
-
 	# get all generations
 	max_generations = sprites.sprite_frames.get_frame_count(anim_cavemen_sitting)
 
-	# reset character
-	self._character_reset()
+	# reset
+	self.reset()
+
 
 
 # --
 # public methods
+
+func reset():
+
+	# vars
+	generation = 0
+	is_blinking = false
+	is_dying = false
+	is_dead = false
+
+	# reset character animations
+	self._character_anim_reset()
+
 
 func new_generation():
 
@@ -52,7 +62,7 @@ func new_generation():
 	generation += 1
 
 	# init character
-	self._character_reset()
+	self._character_anim_reset()
 
 	# determine last generation
 	if generation < max_generations: return
@@ -90,7 +100,7 @@ func reset_state_dying():
 # --
 # private methods
 
-func _character_reset():
+func _character_anim_reset():
 
 	# alive state
 	is_blinking = false

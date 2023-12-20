@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://vosw76xv3ox2"]
+[gd_scene load_steps=4 format=3 uid="uid://vosw76xv3ox2"]
 
+[ext_resource type="Script" path="res://scripts/title.gd" id="1_40uxi"]
 [ext_resource type="Texture2D" uid="uid://bk07getkatbso" path="res://art/ghost_16x16.png" id="1_s3umm"]
 [ext_resource type="Theme" uid="uid://sffvt1lmxtj8" path="res://themes/button_theme.tres" id="2_0dt2t"]
 
-[node name="title" type="Node2D"]
+[node name="title_canvas" type="CanvasLayer"]
+script = ExtResource("1_40uxi")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1
@@ -17,18 +19,22 @@ offset_top = 208.0
 offset_right = 657.0
 offset_bottom = 363.0
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="start" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_0dt2t")
 text = "Start"
 icon = ExtResource("1_s3umm")
 
-[node name="Button2" type="Button" parent="VBoxContainer"]
+[node name="credits" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_0dt2t")
 text = "Credits"
 
-[node name="Button3" type="Button" parent="VBoxContainer"]
+[node name="end" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_0dt2t")
 text = "End"
+
+[connection signal="button_up" from="VBoxContainer/start" to="." method="_on_start_button_up"]
+[connection signal="button_up" from="VBoxContainer/credits" to="." method="_on_credits_button_up"]
+[connection signal="button_up" from="VBoxContainer/end" to="." method="_on_end_button_up"]

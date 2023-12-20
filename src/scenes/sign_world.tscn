@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://darymjq32xhe2"]
+[gd_scene load_steps=10 format=3 uid="uid://darymjq32xhe2"]
 
 [ext_resource type="PackedScene" uid="uid://0iccmywhl76q" path="res://prefabs/sign.tscn" id="1_8kfhy"]
 [ext_resource type="Script" path="res://scripts/sign_world.gd" id="1_tahyx"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cn4t7fu4vfjrk" path="res://art/sign_static_right_side.png" id="3_u4y7a"]
 [ext_resource type="PackedScene" uid="uid://bd11ec50fhc2a" path="res://prefabs/character.tscn" id="5_46d2p"]
 [ext_resource type="LabelSettings" uid="uid://cc4luhxpmp6qc" path="res://themes/my_label_settings.tres" id="6_e6rxa"]
+[ext_resource type="Script" path="res://scripts/sign_world_canvas.gd" id="6_u7uiv"]
 [ext_resource type="PackedScene" uid="uid://baeh41nsujt3d" path="res://scenes/starving_timer.tscn" id="7_6vdgf"]
 [ext_resource type="PackedScene" uid="uid://dh6o5h3dcv6d5" path="res://prefabs/cutscene.tscn" id="8_2um15"]
 
@@ -31,9 +32,11 @@ scale = Vector2(9.276, 2)
 [node name="character" parent="." instance=ExtResource("5_46d2p")]
 position = Vector2(440, 500)
 
-[node name="canvas" type="CanvasLayer" parent="."]
+[node name="sign_world_canvas" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("6_u7uiv")
 
-[node name="label_watch_out" type="Label" parent="canvas"]
+[node name="label_watch_out" type="Label" parent="sign_world_canvas"]
 visible = false
 offset_left = 328.0
 offset_top = 310.0
@@ -43,9 +46,10 @@ text = "Wat-ta-cch ouu-uut!!!!"
 label_settings = ExtResource("6_e6rxa")
 
 [node name="cutscene" parent="." instance=ExtResource("8_2um15")]
+visible = false
 
 [node name="starving_timer" parent="." instance=ExtResource("7_6vdgf")]
-starve_time = 30
+starve_time = 60
 
 [connection signal="sign_falls" from="sign_moving_part" to="." method="_on_sign_sign_falls"]
 [connection signal="dead" from="character" to="." method="_on_character_dead"]

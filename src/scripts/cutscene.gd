@@ -1,5 +1,8 @@
 extends CanvasLayer
 
+# enum
+enum SceneType { next_generation_scene, last_generation_scene }
+
 # signals
 signal cutscene_finished
 signal cutscene_full_dark
@@ -7,7 +10,10 @@ signal cutscene_full_dark
 # refs
 @onready var blackout_rect = $blackout_rect
 @onready var full_dark_timer = $full_dark_timer
-@onready var blackout_labels = $blackout_labels
+@onready var blackout_labels = $blackout_labels_next_generation
+
+# blackout label reference
+#var blackout_labels = null
 
 # cutscene state
 var cutscene_play_flag = false
@@ -27,10 +33,7 @@ const full_dark_time = 2.0
 
 
 func _ready():
-
-	# make default invisible
-	self.visible = false
-
+	
 	# reset
 	self._reset()
 
@@ -70,7 +73,13 @@ func _process(delta):
 # --
 # public functions
 
-func cutscene_play():
+func cutscene_play(scene_type : SceneType = SceneType.next_generation_scene):
+
+	# select corresponding blackout labels
+	match scene_type:
+		SceneType.next_generation_scene: blackout_labels = $blackout_labels_next_generation
+		SceneType.last_generation_scene: blackout_labels = $blackout_labels_last_generation
+		_: blackout_labels = $blackout_labels_next_generation
 
 	# leave cases
 	if cutscene_play_flag: return
@@ -110,12 +119,18 @@ func _reset():
 	# full dark iterations
 	full_dark_mode_iterations = 0
 
+	# default blackout label ref
+	blackout_labels = $blackout_labels_next_generation
+
 
 func _make_blackout_labels_invisible():
 
-	# make blackout labels unvisible
-	blackout_labels.visible = false
-	for child in blackout_labels.get_children(): child.visible = false
+	# make all labels invisible
+	for bl in [$blackout_labels_next_generation, $blackout_labels_last_generation]:
+
+		# make blackout labels unvisible
+		bl.visible = false
+		for child in bl.get_children(): child.visible = false
 
 
 func _transit_to_light():

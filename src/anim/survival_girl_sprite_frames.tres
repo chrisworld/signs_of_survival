@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://cuaygdg4uu8ys"]
+
+[ext_resource type="Texture2D" uid="uid://bhv3fgdjhbh5m" path="res://art/survival_girl/survival_girl.png" id="1_2hrwa"]
+[ext_resource type="Texture2D" uid="uid://bwlqtfik12oqe" path="res://art/survival_girl/survival_girl_blink.png" id="2_ap4l3"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2hrwa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ap4l3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

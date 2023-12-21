@@ -13,7 +13,7 @@ func _ready():
 	is_awake = false
 
 
-func _process(delta):
+func _process(_delta):
 
 	# start timer
 	if not is_awake:

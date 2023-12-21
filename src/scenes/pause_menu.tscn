@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://crrty8acvaxxa"]
+
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_5ew0w"]
+[ext_resource type="LabelSettings" uid="uid://bf7dm2kfor0tw" path="res://themes/pause_label_settings.tres" id="2_brold"]
+
+[node name="pause_canvas" type="CanvasLayer"]
+process_mode = 2
+script = ExtResource("1_5ew0w")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 1160.0
+offset_bottom = 656.0
+color = Color(0.8, 0.945098, 0.968627, 0.490196)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 448.0
+offset_top = 64.0
+offset_right = 704.0
+offset_bottom = 576.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Paused"
+label_settings = ExtResource("2_brold")
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+
+[node name="continue" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Continue"
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="end" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "End
+"
+
+[connection signal="pressed" from="VBoxContainer/continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="VBoxContainer/end" to="." method="_on_end_pressed"]

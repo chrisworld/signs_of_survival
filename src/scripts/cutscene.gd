@@ -1,8 +1,5 @@
 extends CanvasLayer
 
-# enum
-enum SceneType { next_generation_scene, last_generation_scene }
-
 # signals
 signal cutscene_finished
 signal cutscene_full_dark
@@ -13,7 +10,7 @@ signal cutscene_full_dark
 @onready var blackout_labels = $blackout_labels_next_generation
 
 # blackout label reference
-#var blackout_labels = null
+var all_label_scenes = []
 
 # cutscene state
 var cutscene_play_flag = false
@@ -34,8 +31,12 @@ const full_dark_time = 2.0
 
 func _ready():
 	
+	# set var
+	all_label_scenes = [$blackout_labels_next_generation, $blackout_labels_last_generation, $blackout_labels_won_the_game]
+
 	# reset
 	self._reset()
+
 
 
 func _process(delta):
@@ -73,12 +74,13 @@ func _process(delta):
 # --
 # public functions
 
-func cutscene_play(scene_type : SceneType = SceneType.next_generation_scene):
+func cutscene_play(scene_type : Enums.SceneType = Enums.SceneType.next_generation_scene):
 
 	# select corresponding blackout labels
 	match scene_type:
-		SceneType.next_generation_scene: blackout_labels = $blackout_labels_next_generation
-		SceneType.last_generation_scene: blackout_labels = $blackout_labels_last_generation
+		Enums.SceneType.next_generation_scene: blackout_labels = $blackout_labels_next_generation
+		Enums.SceneType.last_generation_scene: blackout_labels = $blackout_labels_last_generation
+		Enums.SceneType.won_the_game_scene: blackout_labels = $blackout_labels_won_the_game
 		_: blackout_labels = $blackout_labels_next_generation
 
 	# leave cases
@@ -92,6 +94,9 @@ func cutscene_play(scene_type : SceneType = SceneType.next_generation_scene):
 
 	# make it visible
 	self.visible = true
+
+
+func get_cutscene_play_flag(): return cutscene_play_flag
 
 
 # --
@@ -126,9 +131,9 @@ func _reset():
 func _make_blackout_labels_invisible():
 
 	# make all labels invisible
-	for bl in [$blackout_labels_next_generation, $blackout_labels_last_generation]:
+	for bl in all_label_scenes:
 
-		# make blackout labels unvisible
+		# make blackout labels invisible
 		bl.visible = false
 		for child in bl.get_children(): child.visible = false
 

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cuj3lhsp8iuq1"]
+
+[ext_resource type="Script" path="res://scripts/survival_girl.gd" id="1_4almb"]
+[ext_resource type="Texture2D" uid="uid://bk07getkatbso" path="res://art/ghost_16x16.png" id="1_mpa01"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dtjr2"]
+size = Vector2(16, 16)
+
+[node name="survival_girl" type="Node2D"]
+script = ExtResource("1_4almb")
+
+[node name="survival_girl_area" type="Area2D" parent="."]
+
+[node name="survival_girld_sprite" type="Sprite2D" parent="survival_girl_area"]
+texture_filter = 1
+texture = ExtResource("1_mpa01")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="survival_girl_area"]
+texture_filter = 1
+shape = SubResource("RectangleShape2D_dtjr2")
+
+[connection signal="input_event" from="survival_girl_area" to="." method="_on_survival_girl_area_input_event"]

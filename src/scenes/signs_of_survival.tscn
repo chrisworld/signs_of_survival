@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://12qgse0h2mtc"]
+[gd_scene load_steps=6 format=3 uid="uid://12qgse0h2mtc"]
 
 [ext_resource type="Script" path="res://scripts/signs_of_survival.gd" id="1_7apyc"]
 [ext_resource type="PackedScene" uid="uid://darymjq32xhe2" path="res://scenes/sign_world.tscn" id="1_jygnp"]
+[ext_resource type="PackedScene" uid="uid://crrty8acvaxxa" path="res://scenes/pause_menu.tscn" id="3_b0irn"]
 [ext_resource type="PackedScene" uid="uid://vosw76xv3ox2" path="res://scenes/title.tscn" id="3_yxjj7"]
 [ext_resource type="PackedScene" uid="uid://bdkgnf2cy82tj" path="res://scenes/credits.tscn" id="4_qwar0"]
 
@@ -10,12 +11,18 @@ script = ExtResource("1_7apyc")
 
 [node name="sign_world" parent="." instance=ExtResource("1_jygnp")]
 
+[node name="pause_canvas" parent="." instance=ExtResource("3_b0irn")]
+visible = false
+
 [node name="title_canvas" parent="." instance=ExtResource("3_yxjj7")]
 visible = false
 
 [node name="credits_canvas" parent="." instance=ExtResource("4_qwar0")]
 visible = false
 
+[connection signal="loose_cutscene_full_dark" from="sign_world" to="." method="_on_sign_world_loose_cutscene_full_dark"]
+[connection signal="win_cutscene_full_dark" from="sign_world" to="." method="_on_sign_world_win_cutscene_full_dark"]
+[connection signal="go_to_title" from="pause_canvas" to="." method="_on_pause_canvas_go_to_title"]
 [connection signal="credits" from="title_canvas" to="." method="_on_title_canvas_credits"]
 [connection signal="end_game" from="title_canvas" to="." method="_on_title_canvas_end_game"]
 [connection signal="start_game" from="title_canvas" to="." method="_on_title_canvas_start_game"]

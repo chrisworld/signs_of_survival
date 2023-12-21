@@ -42,8 +42,8 @@ func _ready():
 # --
 # public methods
 
-func get_num_clicks():
-	return num_clicks
+func freeze_sign():
+	self.freeze = true
 
 
 func reset_to_position(new_position):
@@ -104,7 +104,7 @@ func _on_sign_area_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton:
 	
 		# cases to leave
-		if not event.button_index == 1: return
+		if not event.button_index == MOUSE_BUTTON_LEFT: return
 		if not event.pressed: return
 		if event.is_echo(): return
 		

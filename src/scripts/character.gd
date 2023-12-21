@@ -4,6 +4,9 @@ signal last_generation
 signal dying
 signal dead
 
+# exports
+@export var debug_set_to_second_last_generation = false
+
 # generations vars
 var generation = 0
 var max_generations = 0
@@ -34,7 +37,7 @@ const dying_time = 2.0
 func _ready():
 
 	# get all generations
-	max_generations = sprites.sprite_frames.get_frame_count(anim_cavemen_sitting)
+	max_generations = sprites.sprite_frames.get_frame_count(anim_cavemen_sitting) - 1
 
 	# reset
 	self.reset()
@@ -47,7 +50,7 @@ func _ready():
 func reset():
 
 	# vars
-	generation = 0
+	generation = 0 if not debug_set_to_second_last_generation else max_generations - 1
 	is_blinking = false
 	is_dying = false
 	is_dead = false
@@ -70,6 +73,8 @@ func new_generation():
 	# this is the last generation
 	last_generation.emit()
 
+	print("this is the last generation")
+
 
 func set_state_dying():
 
@@ -83,7 +88,7 @@ func set_state_dying():
 	# var and signal
 	is_dying = true
 	dying.emit()
-	print("dies")
+	print(generation, "-th ", "dies")
 	# start new blink timer
 	blink_timer.start(2 * blink_duration_min)
 

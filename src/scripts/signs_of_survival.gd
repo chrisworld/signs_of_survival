@@ -8,10 +8,6 @@ extends Node2D
 @onready var title_canvas = $title_canvas
 @onready var credits_canvas = $credits_canvas
 
-# canvas flags
-var is_title_canvas = false
-var is_credits_canvas = false
-
 # playing flag
 var is_playing = false
 
@@ -28,16 +24,20 @@ func _ready():
 
 
 func _process(_delta):
-	
+
+	# leave cases
+	if title_canvas.visible: return
+	if credits_canvas.visible: return
+	if sign_world.is_cutscene_playing(): return
+
 	# escape
 	if Input.is_action_just_pressed("escape"):
 
-		if is_playing:
-
 			# pause
-			print("pause")
-			get_tree().paused = true
+			if get_tree().paused: return
 
+			# pause game
+			self.pause_game()
 
 
 # --
@@ -48,20 +48,38 @@ func start_new_game():
 	# reset sign world
 	sign_world.reset_sign_world()
 
+	# play
+	is_playing = true
+
+
+func pause_game():
+
+	# must be in playing to pause
+	if not is_playing: return
+
+	print("pause")
+	get_tree().paused = true
+
+
+func unpause_game():
+
+	print("unpause")
+	get_tree().paused = false
+
 
 func title_canvas_on():
 
 	# activate
-	is_title_canvas = true
+	is_playing = false
 
 	# show
 	title_canvas.show()
 
+	# pause
+	sign_world.pause_world()
+
 
 func title_canvas_off():
-
-	# activate
-	is_title_canvas = false
 
 	# show
 	title_canvas.hide()
@@ -70,16 +88,16 @@ func title_canvas_off():
 func credits_canvas_on():
 
 	# activate
-	is_credits_canvas = true
+	is_playing = false
 
 	# show
 	credits_canvas.show()
 
+	# pause
+	sign_world.pause_world()
+
 
 func credits_canvas_off():
-
-	# activate
-	is_credits_canvas = false
 
 	# show
 	credits_canvas.hide()
@@ -92,7 +110,6 @@ func _on_title_canvas_start_game():
 
 	# start new game
 	self.start_new_game()
-	is_playing = false
 	get_tree().paused = false
 
 	# canvas off
@@ -112,3 +129,16 @@ func _on_credits_canvas_end_credits():
 	title_canvas_on()
 	credits_canvas_off()
 	
+
+func _on_sign_world_loose_cutscene_full_dark():
+	credits_canvas_off()
+	title_canvas_on()
+
+
+func _on_sign_world_win_cutscene_full_dark():
+	title_canvas_off()
+	credits_canvas_on()
+
+
+func _on_pause_canvas_go_to_title():
+	title_canvas_on()

@@ -18,6 +18,7 @@ signal win_cutscene_full_dark
 
 # vars
 var is_last_generation = false
+var is_last_generation_dead = false
 var is_survival_girl_coming_for_rescue = false
 
 # win condition
@@ -34,6 +35,7 @@ func _ready():
 
 	# last generation reset
 	is_last_generation = false
+	is_last_generation_dead = false
 
 	# win condition
 	won_the_game_flag = false
@@ -131,7 +133,9 @@ func _on_cutscene_cutscene_full_dark():
 	sign_world_canvas.hide_label_starved()
 
 	# check if its the last generation who died
-	if is_last_generation: loose_cutscene_full_dark.emit()
+	if is_last_generation: 
+		loose_cutscene_full_dark.emit()
+		return
 
 	# reset for next generation
 	self._reset_for_next_generation()
@@ -145,6 +149,7 @@ func _on_character_dead():
 		# loose cutscene
 		loose_game.emit()
 		cutscene.cutscene_play(Enums.SceneType.last_generation_scene)
+		is_last_generation_dead = true
 		return
 
 	# create cutscene
@@ -170,7 +175,10 @@ func _on_starving_timer_starved():
 
 
 func _on_cutscene_cutscene_finished():
-	
+
+	# last generation died
+	if is_last_generation_dead: return
+
 	# start timer again
 	starving_timer.reset_time()
 

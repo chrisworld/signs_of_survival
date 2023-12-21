@@ -1,6 +1,5 @@
-[gd_scene load_steps=4 format=3 uid="uid://ck3whmkemwclf"]
+[gd_scene load_steps=3 format=3 uid="uid://ck3whmkemwclf"]
 
-[ext_resource type="Texture2D" uid="uid://bk07getkatbso" path="res://art/ghost_16x16.png" id="1_2c8jw"]
 [ext_resource type="PhysicsMaterial" uid="uid://djcicrkts4y6c" path="res://materials/ground_physics_material.tres" id="1_vcls6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gpggf"]
@@ -10,10 +9,5 @@ size = Vector2(120, 30)
 physics_material_override = ExtResource("1_vcls6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(9.24, 1)
 shape = SubResource("RectangleShape2D_gpggf")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(2.38419e-07, -4.76837e-07)
-scale = Vector2(7.5, 1.875)
-texture = ExtResource("1_2c8jw")

@@ -1,30 +1,31 @@
 [gd_scene load_steps=4 format=3 uid="uid://cuj3lhsp8iuq1"]
 
 [ext_resource type="Script" path="res://scripts/survival_girl.gd" id="1_4almb"]
-[ext_resource type="SpriteFrames" path="res://anim/survival_girl_sprite_frames.tres" id="2_p7sua"]
+[ext_resource type="SpriteFrames" uid="uid://cuaygdg4uu8ys" path="res://anim/survival_girl_sprite_frames.tres" id="2_p7sua"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dtjr2"]
-size = Vector2(54, 74)
+size = Vector2(58, 74)
 
 [node name="survival_girl" type="Node2D"]
+position = Vector2(94, 64)
 script = ExtResource("1_4almb")
 
 [node name="sprites" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = ExtResource("2_p7sua")
-frame_progress = 0.110285
+animation = &"look"
+frame_progress = 0.269047
 
 [node name="survival_girl_area" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="survival_girl_area"]
 texture_filter = 1
-position = Vector2(-1, 0)
+position = Vector2(-7, 0)
 shape = SubResource("RectangleShape2D_dtjr2")
 
-[node name="blink_timer" type="Timer" parent="."]
-
-[node name="blink_duration_timer" type="Timer" parent="."]
+[node name="rand_timer" type="Timer" parent="."]
 
 [connection signal="input_event" from="survival_girl_area" to="." method="_on_survival_girl_area_input_event"]
-[connection signal="timeout" from="blink_timer" to="." method="_on_blink_timer_timeout"]
-[connection signal="timeout" from="blink_duration_timer" to="." method="_on_blink_duration_timer_timeout"]
+[connection signal="mouse_entered" from="survival_girl_area" to="." method="_on_survival_girl_area_mouse_entered"]
+[connection signal="mouse_exited" from="survival_girl_area" to="." method="_on_survival_girl_area_mouse_exited"]
+[connection signal="timeout" from="rand_timer" to="." method="_on_rand_timer_timeout"]

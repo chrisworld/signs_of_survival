@@ -131,6 +131,7 @@ func _on_credits_canvas_end_credits():
 	
 
 func _on_sign_world_loose_cutscene_full_dark():
+	print("you lost -> go to title")
 	credits_canvas_off()
 	title_canvas_on()
 

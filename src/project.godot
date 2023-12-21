@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 Enums="*res://scripts/enums.gd"
 
+[display]
+
+window/size/viewport_width=864
+
 [input]
 
 escape={

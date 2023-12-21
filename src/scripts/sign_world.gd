@@ -43,7 +43,6 @@ func _ready():
 
 	# hide survival girl
 	survival_girl.hide()
-	
 
 # --
 # public methods

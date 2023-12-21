@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://darymjq32xhe2"]
+[gd_scene load_steps=13 format=3 uid="uid://darymjq32xhe2"]
 
 [ext_resource type="PackedScene" uid="uid://0iccmywhl76q" path="res://prefabs/sign.tscn" id="1_8kfhy"]
 [ext_resource type="Script" path="res://scripts/sign_world.gd" id="1_tahyx"]
 [ext_resource type="PackedScene" uid="uid://ck3whmkemwclf" path="res://prefabs/ground.tscn" id="2_nw6t4"]
 [ext_resource type="Texture2D" uid="uid://cn4t7fu4vfjrk" path="res://art/sign_static_right_side.png" id="3_u4y7a"]
+[ext_resource type="Texture2D" uid="uid://c1wflhh34s5i3" path="res://art/Backgrounds/Background_day-2.png" id="5_1whl6"]
 [ext_resource type="PackedScene" uid="uid://bd11ec50fhc2a" path="res://prefabs/character.tscn" id="5_46d2p"]
 [ext_resource type="LabelSettings" uid="uid://cc4luhxpmp6qc" path="res://themes/my_label_settings.tres" id="6_e6rxa"]
 [ext_resource type="PackedScene" uid="uid://cuj3lhsp8iuq1" path="res://prefabs/survival_girl.tscn" id="6_kom1c"]
@@ -14,6 +15,13 @@
 
 [node name="sign_world" type="Node2D"]
 script = ExtResource("1_tahyx")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -162.0
+offset_top = -295.0
+offset_right = 862.0
+offset_bottom = 729.0
+texture = ExtResource("5_1whl6")
 
 [node name="sign_position_marker" type="Marker2D" parent="."]
 position = Vector2(480, 160)
@@ -28,6 +36,7 @@ position = Vector2(480, 160)
 texture = ExtResource("3_u4y7a")
 
 [node name="ground" parent="." instance=ExtResource("2_nw6t4")]
+visible = false
 position = Vector2(540, 560)
 scale = Vector2(9.276, 2)
 

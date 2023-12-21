@@ -1,40 +1,54 @@
-[gd_scene load_steps=4 format=3 uid="uid://vosw76xv3ox2"]
+[gd_scene load_steps=9 format=3 uid="uid://vosw76xv3ox2"]
 
 [ext_resource type="Script" path="res://scripts/title.gd" id="1_40uxi"]
-[ext_resource type="Texture2D" uid="uid://bk07getkatbso" path="res://art/ghost_16x16.png" id="1_s3umm"]
-[ext_resource type="Theme" uid="uid://sffvt1lmxtj8" path="res://themes/button_theme.tres" id="2_0dt2t"]
+[ext_resource type="Texture2D" uid="uid://nf3ukkxmr54h" path="res://art/Title.png" id="2_exddr"]
+[ext_resource type="Texture2D" uid="uid://bfvi67tves3th" path="res://art/Buttons/Startbutton_default.png" id="4_nroer"]
+[ext_resource type="Texture2D" uid="uid://dd8rwn3v0esmu" path="res://art/Buttons/Startbutton_hover.png" id="5_wqdx2"]
+[ext_resource type="Texture2D" uid="uid://c6tlik6gheu2b" path="res://art/Buttons/Creditbutton_default.png" id="6_skt58"]
+[ext_resource type="Texture2D" uid="uid://du7gcr4dw824s" path="res://art/Buttons/Creditbutton_hover.png" id="7_xnr66"]
+[ext_resource type="Texture2D" uid="uid://7qqpd14rckfx" path="res://art/Buttons/Endbutton_default.png" id="8_i1slx"]
+[ext_resource type="Texture2D" uid="uid://cfhhkab4wl6py" path="res://art/Buttons/Endbutton_hover.png" id="9_m3fei"]
 
 [node name="title_canvas" type="CanvasLayer"]
 script = ExtResource("1_40uxi")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 texture_filter = 1
-offset_right = 1153.0
-offset_bottom = 650.0
-texture = ExtResource("1_s3umm")
+offset_left = -133.0
+offset_top = -300.0
+offset_right = 1020.0
+offset_bottom = 724.0
+texture = ExtResource("2_exddr")
+stretch_mode = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_left = 408.0
-offset_top = 208.0
-offset_right = 657.0
-offset_bottom = 363.0
+[node name="start" type="TextureButton" parent="Background"]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 428.0
+offset_right = 751.0
+offset_bottom = 520.0
+texture_normal = ExtResource("4_nroer")
+texture_pressed = ExtResource("4_nroer")
+texture_hover = ExtResource("5_wqdx2")
 
-[node name="start" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_0dt2t")
-text = "Start"
-icon = ExtResource("1_s3umm")
+[node name="credits" type="TextureButton" parent="Background"]
+layout_mode = 0
+offset_left = 447.0
+offset_top = 540.0
+offset_right = 709.0
+offset_bottom = 621.0
+texture_normal = ExtResource("6_skt58")
+texture_hover = ExtResource("7_xnr66")
 
-[node name="credits" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_0dt2t")
-text = "Credits"
+[node name="end" type="TextureButton" parent="Background"]
+layout_mode = 0
+offset_left = 447.0
+offset_top = 629.0
+offset_right = 709.0
+offset_bottom = 710.0
+texture_normal = ExtResource("8_i1slx")
+texture_hover = ExtResource("9_m3fei")
 
-[node name="end" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_0dt2t")
-text = "End"
-
-[connection signal="button_up" from="VBoxContainer/start" to="." method="_on_start_button_up"]
-[connection signal="button_up" from="VBoxContainer/credits" to="." method="_on_credits_button_up"]
-[connection signal="button_up" from="VBoxContainer/end" to="." method="_on_end_button_up"]
+[connection signal="button_up" from="Background/start" to="." method="_on_start_button_up"]
+[connection signal="button_up" from="Background/credits" to="." method="_on_credits_button_up"]
+[connection signal="button_up" from="Background/end" to="." method="_on_end_button_up"]

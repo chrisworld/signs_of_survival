@@ -7,12 +7,13 @@ signal loose_cutscene_full_dark
 signal win_cutscene_full_dark
 
 # refs
+@onready var background = $background
 @onready var sign_world_canvas = $sign_world_canvas
-@onready var sign_position_marker = $sign_position_marker
-@onready var sign_moving_part = $sign_moving_part
-@onready var sign_static_part = $sign_static_part
-@onready var character = $character
-@onready var survival_girl = $survival_girl
+@onready var sign_position_marker = $objects/sign/sign_position_marker
+@onready var sign_moving_part = $objects/sign/sign_moving_part
+@onready var sign_static_part = $objects/sign/sign_static_part
+@onready var character = $objects/character
+@onready var survival_girl = $objects/survival_girl
 @onready var cutscene = $cutscene
 @onready var starving_timer = $starving_timer
 
@@ -28,9 +29,6 @@ var won_the_game_flag = false
 
 func _ready():
 	
-	# canvas
-	sign_world_canvas.hide()
-
 	# static part invisible
 	sign_static_part.visible = false
 
@@ -41,12 +39,15 @@ func _ready():
 	# win condition
 	won_the_game_flag = false
 
-	# reset starving timer
-	starving_timer.reset_time()
 
-	# hide survival girl
-	survival_girl.reset()
-	
+func _process(_delta):
+
+	# actual starving time
+	var actual_starving_time = starving_timer.get_actual_starving_time()
+
+	# update
+	sign_world_canvas.update_starve_countdown(actual_starving_time)
+
 
 # --
 # public methods
@@ -59,6 +60,12 @@ func reset_sign_world():
 	# resets
 	character.reset()
 	starving_timer.reset()
+	sign_world_canvas.reset()
+	starving_timer.reset()
+	survival_girl.reset()
+	
+	# reset background
+	background.frame = character.get_generation()
 
 	# ready stuff
 	self._ready()
@@ -89,7 +96,7 @@ func _won_sign_world():
 	sign_moving_part.freeze_sign()
 
 	# canvas
-	sign_world_canvas.hide_label_watch_out()
+	sign_world_canvas.reset()
 
 	# emit
 	win_game.emit()
@@ -103,14 +110,17 @@ func _reset_for_next_generation():
 	# new character
 	character.new_generation()
 
+	# new background
+	background.frame = character.get_generation()
+
 	# sign falling visibles
 	sign_static_part.visible = false
 
 	# canvas
-	sign_world_canvas.hide_label_watch_out()
+	sign_world_canvas.reset()
 
 	# timer set starving time
-	starving_timer.set_staving_time()
+	sign_world_canvas.set_starve_countdown(starving_timer.get_max_starving_time())
 
 
 # --
@@ -201,6 +211,9 @@ func _on_starving_timer_survival_girl_appears():
 
 
 func _on_survival_girl_she_rescues_you():
+
+	# she cannot help you
+	if character.get_is_dying(): return
 
 	# win actions
 	self._won_sign_world()

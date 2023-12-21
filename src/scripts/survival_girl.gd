@@ -59,7 +59,7 @@ func _on_survival_girl_area_input_event(_viewport, event, _shape_idx):
 		# successful click
 		she_rescues_you_flag = true
 		she_rescues_you.emit()
-		print("survival girl rescues you;)")
+		print("survival girl comes for rescue;)")
 
 		# start anim?
 		rescuing_anim_done.emit()

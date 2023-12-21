@@ -11,6 +11,9 @@ signal sign_falls
 
 # refs
 @onready var sign_anim = $sign_anim
+@onready var sfx_sign_hit_parent = $sfx_sign_hit
+@onready var sfx_sign_snap = $sign_snap
+@onready var sfx_watch_out = $watch_out
 
 # num click
 var num_clicks = 0
@@ -78,7 +81,8 @@ func _max_number_of_clicks_reached():
 	
 	# free object
 	self.freeze = false
-	
+	sfx_sign_snap.play()
+	sfx_watch_out.play()
 	# emit signal
 	sign_falls.emit()
 	
@@ -110,6 +114,7 @@ func _on_sign_area_input_event(_viewport, event, _shape_idx):
 		
 		# add counts
 		num_clicks += 1
+		sfx_sign_hit_parent.get_child(num_clicks%sfx_sign_hit_parent.get_children().size()).play()
 				
 		# compare
 		if num_clicks >= max_num_clicks:

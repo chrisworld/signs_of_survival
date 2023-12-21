@@ -9,8 +9,8 @@
 [ext_resource type="LabelSettings" uid="uid://cc4luhxpmp6qc" path="res://themes/my_label_settings.tres" id="6_e6rxa"]
 [ext_resource type="PackedScene" uid="uid://cuj3lhsp8iuq1" path="res://prefabs/survival_girl.tscn" id="6_kom1c"]
 [ext_resource type="Script" path="res://scripts/sign_world_canvas.gd" id="6_u7uiv"]
-[ext_resource type="PackedScene" uid="uid://baeh41nsujt3d" path="res://scenes/starving_timer.tscn" id="7_6vdgf"]
 [ext_resource type="PackedScene" uid="uid://dh6o5h3dcv6d5" path="res://prefabs/cutscene.tscn" id="8_2um15"]
+[ext_resource type="Script" path="res://scripts/starving_timer.gd" id="8_a1rqe"]
 [ext_resource type="LabelSettings" uid="uid://21ceqv5ycliv" path="res://themes/big_label_settings.tres" id="9_qulp1"]
 
 [node name="sign_world" type="Node2D"]
@@ -18,36 +18,39 @@ script = ExtResource("1_tahyx")
 
 [node name="background" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(409, 209)
+position = Vector2(512, 256)
 sprite_frames = ExtResource("2_1je1o")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_left = -162.0
-offset_top = -295.0
-offset_right = 862.0
-offset_bottom = 729.0
+[node name="objects" type="Node2D" parent="."]
+position = Vector2(584, 328)
 
-[node name="sign_position_marker" type="Marker2D" parent="."]
-position = Vector2(480, 160)
+[node name="sign" type="Node2D" parent="objects"]
 
-[node name="sign_moving_part" parent="." instance=ExtResource("1_8kfhy")]
-position = Vector2(480, 160)
-max_num_clicks = 10
+[node name="sign_position_marker" type="Marker2D" parent="objects/sign"]
+position = Vector2(-32, -96)
 
-[node name="sign_static_part" type="Sprite2D" parent="."]
+[node name="sign_moving_part" parent="objects/sign" instance=ExtResource("1_8kfhy")]
+position = Vector2(-32, -96)
+max_num_clicks = 8
+
+[node name="sign_static_part" type="Sprite2D" parent="objects/sign"]
 texture_filter = 1
-position = Vector2(480, 160)
+position = Vector2(-32, -96)
 texture = ExtResource("3_u4y7a")
 
-[node name="ground" parent="." instance=ExtResource("2_nw6t4")]
-position = Vector2(438, 554)
-
-[node name="character" parent="." instance=ExtResource("5_46d2p")]
-position = Vector2(440, 500)
+[node name="character" parent="objects" instance=ExtResource("5_46d2p")]
+position = Vector2(-72, 244)
 debug_set_to_second_last_generation = true
 
-[node name="survival_girl" parent="." instance=ExtResource("6_kom1c")]
-position = Vector2(75, 495)
+[node name="survival_girl" parent="objects" instance=ExtResource("6_kom1c")]
+position = Vector2(-392, 240)
+
+[node name="ground" parent="objects" instance=ExtResource("2_nw6t4")]
+position = Vector2(-74, 298)
+
+[node name="starving_timer" type="Timer" parent="."]
+script = ExtResource("8_a1rqe")
+starve_time = 2.0
 
 [node name="sign_world_canvas" type="CanvasLayer" parent="."]
 script = ExtResource("6_u7uiv")
@@ -68,18 +71,32 @@ offset_bottom = 340.0
 text = "Starved!"
 label_settings = ExtResource("9_qulp1")
 
+[node name="container_starve_countdown" type="HBoxContainer" parent="sign_world_canvas"]
+offset_left = 26.0
+offset_top = 35.0
+offset_right = 338.0
+offset_bottom = 80.0
+
+[node name="label_text" type="Label" parent="sign_world_canvas/container_starve_countdown"]
+layout_mode = 2
+text = "Time until you stave: "
+label_settings = ExtResource("6_e6rxa")
+
+[node name="label_starve_time" type="Label" parent="sign_world_canvas/container_starve_countdown"]
+layout_mode = 2
+label_settings = ExtResource("6_e6rxa")
+
 [node name="cutscene" parent="." instance=ExtResource("8_2um15")]
 visible = false
 
-[node name="starving_timer" parent="." instance=ExtResource("7_6vdgf")]
-
-[connection signal="sign_falls" from="sign_moving_part" to="." method="_on_sign_sign_falls"]
-[connection signal="dead" from="character" to="." method="_on_character_dead"]
-[connection signal="dying" from="character" to="." method="_on_character_dying"]
-[connection signal="last_generation" from="character" to="." method="_on_character_last_generation"]
-[connection signal="rescuing_anim_done" from="survival_girl" to="." method="_on_survival_girl_rescuing_anim_done"]
-[connection signal="she_rescues_you" from="survival_girl" to="." method="_on_survival_girl_she_rescues_you"]
-[connection signal="cutscene_finished" from="cutscene" to="." method="_on_cutscene_cutscene_finished"]
-[connection signal="cutscene_full_dark" from="cutscene" to="." method="_on_cutscene_cutscene_full_dark"]
+[connection signal="sign_falls" from="objects/sign/sign_moving_part" to="." method="_on_sign_sign_falls"]
+[connection signal="dead" from="objects/character" to="." method="_on_character_dead"]
+[connection signal="dying" from="objects/character" to="." method="_on_character_dying"]
+[connection signal="last_generation" from="objects/character" to="." method="_on_character_last_generation"]
+[connection signal="rescuing_anim_done" from="objects/survival_girl" to="." method="_on_survival_girl_rescuing_anim_done"]
+[connection signal="she_rescues_you" from="objects/survival_girl" to="." method="_on_survival_girl_she_rescues_you"]
 [connection signal="starved" from="starving_timer" to="." method="_on_starving_timer_starved"]
 [connection signal="survival_girl_appears" from="starving_timer" to="." method="_on_starving_timer_survival_girl_appears"]
+[connection signal="timeout" from="starving_timer" to="starving_timer" method="_on_timeout"]
+[connection signal="cutscene_finished" from="cutscene" to="." method="_on_cutscene_cutscene_finished"]
+[connection signal="cutscene_full_dark" from="cutscene" to="." method="_on_cutscene_cutscene_full_dark"]

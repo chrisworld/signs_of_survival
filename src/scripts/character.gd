@@ -103,6 +103,13 @@ func reset_state_dying():
 
 
 # --
+# getter
+
+func get_generation(): return generation
+func get_is_dying(): return is_dying
+
+
+# --
 # private methods
 
 func _character_anim_reset():

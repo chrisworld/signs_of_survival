@@ -42,7 +42,8 @@ func _ready():
 	starving_timer.reset_time()
 
 	# hide survival girl
-	survival_girl.hide()
+	survival_girl.reset()
+	
 
 # --
 # public methods
@@ -187,7 +188,7 @@ func _on_starving_timer_survival_girl_appears():
 
 	# survival girl
 	is_survival_girl_coming_for_rescue = true
-	survival_girl.show()
+	survival_girl.make_her_visible()
 
 
 func _on_survival_girl_she_rescues_you():

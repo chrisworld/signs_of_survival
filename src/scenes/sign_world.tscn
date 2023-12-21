@@ -45,8 +45,7 @@ position = Vector2(440, 500)
 debug_set_to_second_last_generation = true
 
 [node name="survival_girl" parent="." instance=ExtResource("6_kom1c")]
-position = Vector2(72, 506)
-scale = Vector2(3, 3)
+position = Vector2(75, 495)
 
 [node name="sign_world_canvas" type="CanvasLayer" parent="."]
 script = ExtResource("6_u7uiv")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://vosw76xv3ox2"]
+[gd_scene load_steps=9 format=3 uid="uid://vosw76xv3ox2"]
 
 [ext_resource type="Script" path="res://scripts/title.gd" id="1_40uxi"]
 [ext_resource type="Texture2D" uid="uid://nf3ukkxmr54h" path="res://art/Title.png" id="2_exddr"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://c6tlik6gheu2b" path="res://art/Buttons/Creditbutton_default.png" id="6_skt58"]
 [ext_resource type="Texture2D" uid="uid://du7gcr4dw824s" path="res://art/Buttons/Creditbutton_hover.png" id="7_xnr66"]
 [ext_resource type="Texture2D" uid="uid://7qqpd14rckfx" path="res://art/Buttons/Endbutton_default.png" id="8_i1slx"]
-[ext_resource type="AudioStream" uid="uid://lssccliq0dcc" path="res://audio/bgm/curious-creep-35588.mp3" id="9_cklnk"]
 [ext_resource type="Texture2D" uid="uid://cfhhkab4wl6py" path="res://art/Buttons/Endbutton_hover.png" id="9_m3fei"]
 
 [node name="title_canvas" type="CanvasLayer"]
@@ -49,11 +48,6 @@ offset_right = 642.0
 offset_bottom = 710.0
 texture_normal = ExtResource("8_i1slx")
 texture_hover = ExtResource("9_m3fei")
-
-[node name="bgm_title_loop" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_cklnk")
-volume_db = -15.0
-autoplay = true
 
 [connection signal="button_up" from="Background/start" to="." method="_on_start_button_up"]
 [connection signal="button_up" from="Background/credits" to="." method="_on_credits_button_up"]

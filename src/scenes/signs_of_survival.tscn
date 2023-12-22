@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://12qgse0h2mtc"]
+[gd_scene load_steps=10 format=3 uid="uid://12qgse0h2mtc"]
 
 [ext_resource type="Script" path="res://scripts/signs_of_survival.gd" id="1_7apyc"]
 [ext_resource type="PackedScene" uid="uid://darymjq32xhe2" path="res://scenes/sign_world.tscn" id="1_jygnp"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://vosw76xv3ox2" path="res://scenes/title.tscn" id="3_yxjj7"]
 [ext_resource type="PackedScene" uid="uid://bdkgnf2cy82tj" path="res://scenes/credits.tscn" id="4_qwar0"]
 [ext_resource type="PackedScene" uid="uid://c1vr3pq5euxvq" path="res://scenes/win_canvas.tscn" id="6_ob7jf"]
+[ext_resource type="AudioStream" uid="uid://lssccliq0dcc" path="res://audio/bgm/curious-creep-35588.mp3" id="7_8x6gb"]
+[ext_resource type="AudioStream" uid="uid://pwe7moh7f17c" path="res://audio/bgm/game-music-loop-7-145285.mp3" id="8_lq2lp"]
+[ext_resource type="AudioStream" uid="uid://rorso6nejgoe" path="res://audio/bgm/orchestral-chillout-64027.mp3" id="9_eumi7"]
 
 [node name="signs_of_survival" type="Node2D"]
 script = ExtResource("1_7apyc")
@@ -28,6 +31,19 @@ layer = 2
 visible = false
 
 [node name="win_canvas_on_timer" type="Timer" parent="win_canvas"]
+
+[node name="bgm_main_game_loop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_8x6gb")
+volume_db = -15.0
+autoplay = true
+
+[node name="bgm_win" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_lq2lp")
+volume_db = -15.0
+
+[node name="bgm_credits" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_eumi7")
+volume_db = -15.0
 
 [connection signal="loose_cutscene_full_dark" from="sign_world" to="." method="_on_sign_world_loose_cutscene_full_dark"]
 [connection signal="win_cutscene_full_dark" from="sign_world" to="." method="_on_sign_world_win_cutscene_full_dark"]

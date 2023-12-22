@@ -17,6 +17,7 @@ signal win_cutscene_full_dark
 @onready var cutscene = $cutscene
 @onready var starving_timer = $starving_timer
 
+
 # vars
 var is_last_generation = false
 var is_last_generation_dead = false

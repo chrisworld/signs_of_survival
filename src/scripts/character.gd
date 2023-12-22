@@ -19,6 +19,8 @@ var is_dead = false
 @onready var blink_timer = $blink_timer
 @onready var blink_duration_timer = $blink_duration_timer
 @onready var dead_timer = $dead_timer
+@onready var sfx_dying = $sfx_dying
+@onready var sfx_dying_special = $sfx_dying_special
 
 # anim names
 const anim_cavemen_sitting = "cavemen_sitting"
@@ -169,6 +171,10 @@ func _on_blink_duration_timer_timeout():
 
 func _on_body_area_entered(_area):
 	
+	if randi_range(1,10)>1:
+		sfx_dying.play()
+	else:
+		sfx_dying_special.play()
 	# init dying
 	self.set_state_dying()
 

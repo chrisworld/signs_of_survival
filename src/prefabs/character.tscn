@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bd11ec50fhc2a"]
+[gd_scene load_steps=12 format=3 uid="uid://bd11ec50fhc2a"]
 
 [ext_resource type="Script" path="res://scripts/character.gd" id="1_r3cvs"]
 [ext_resource type="SpriteFrames" uid="uid://dt8y23sbwd1tc" path="res://anim/cavemen_sprite_frames.tres" id="2_gicsh"]
+[ext_resource type="AudioStream" uid="uid://dv03hfp2s85tr" path="res://audio/sfx/crushed_short.wav" id="3_tsyyu"]
+[ext_resource type="AudioStream" uid="uid://idijfgbqwdb6" path="res://audio/sfx/crushed_full.wav" id="4_wl7cc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vcx0h"]
 size = Vector2(73, 76)
@@ -32,6 +34,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("body:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_o6mts"]
 resource_name = "die_v0"
@@ -60,12 +74,112 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.3, 0.7), Vector2(1, 1)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("body:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_3pqfk"]
+resource_name = "die_v1"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("body:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 800), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("body:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2, 2), Vector2(3, 3), Vector2(4, 4), Vector2(5, 5), Vector2(6, 6), Vector2(7, 7), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("body:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -1.5708, -3.14159, -4.71239, -6.28319, -7.85398, -9.42478, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_p63hc"]
+resource_name = "starve_v0"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("body:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.5708]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("body:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(0.8, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_klywp"]
 _data = {
 "RESET": SubResource("Animation_rkppf"),
-"die_v0": SubResource("Animation_o6mts")
+"die_v0": SubResource("Animation_o6mts"),
+"die_v1": SubResource("Animation_3pqfk"),
+"starve_v0": SubResource("Animation_p63hc")
 }
+
+[sub_resource type="Curve2D" id="Curve2D_koxuv"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1, 0, -0.707107, 23.9961, 0.707107, -23.9961, 57, -32, 45.0128, 0, -45.0128, 0, 2, -93, 15.367, -18.7156, -15.367, 18.7156, -89, -56, -23.3345, -31.8198, 23.3345, 31.8198, -89, 57, -36.7696, 14.1421, 36.7696, -14.1421, 51, 97)
+}
+point_count = 6
 
 [node name="character" type="Node2D"]
 texture_filter = 1
@@ -91,6 +205,18 @@ animation = &"cavemen_sitting"
 libraries = {
 "": SubResource("AnimationLibrary_klywp")
 }
+
+[node name="sfx_dying" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-512, -572)
+stream = ExtResource("3_tsyyu")
+
+[node name="sfx_dying_special" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-512, -572)
+stream = ExtResource("4_wl7cc")
+
+[node name="Path2D" type="Path2D" parent="."]
+visible = false
+curve = SubResource("Curve2D_koxuv")
 
 [connection signal="area_entered" from="body" to="." method="_on_body_area_entered"]
 [connection signal="timeout" from="blink_timer" to="." method="_on_blink_timer_timeout"]

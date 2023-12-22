@@ -13,6 +13,11 @@ var max_generations = 0
 var is_blinking = false
 var is_dying = false
 var is_dead = false
+var is_starved = false
+
+# anim die selection
+var anim_die_selection = 0
+var anim_starve_selection = 0
 
 # refs
 @onready var sprites = $body/sprites 
@@ -29,7 +34,8 @@ const anim_cavemen_blinking = "cavemen_blinking"
 const anim_cavemen_dying = "cavemen_dying"
 const anim_cavemen_dying_2 = "cavemen_dying-2"
 
-const anim_die_collection = ["die_v0"]
+const anim_die_collection = ["die_v0", "die_v1"]
+const anim_starve_collection = ["starve_v0",]
 
 # base blink time
 const blink_time_min = 1.0
@@ -47,6 +53,8 @@ func _ready():
 	# reset
 	self.reset()
 
+	# select reandowm die anim
+	self._select_random_anim()
 
 
 # --
@@ -59,6 +67,8 @@ func reset():
 	is_blinking = false
 	is_dying = false
 	is_dead = false
+	is_starved = false
+	anim_die_selection = 1
 
 	# reset character animations
 	self._character_anim_reset()
@@ -100,14 +110,41 @@ func set_state_dying():
 	# dead timer
 	dead_timer.start(dying_time)
 
+	# starve animation
+	if is_starved:
+		anim.play(anim_starve_collection[anim_starve_selection])
+		return
+
 	# start animation
-	anim.play(anim_die_collection[0])
+	anim.play(anim_die_collection[anim_die_selection])
+
+
+func set_state_starved():
+
+	# overwrite
+	is_starved = true
+
+	# set dying
+	self.set_state_dying()
 
 
 func reset_state_dying():
 	sprites.animation = anim_cavemen_sitting
 	sprites.frame = generation
 	is_dying = false
+
+
+# --
+# setter
+
+func set_anim_die_selection(sel : int):
+	if sel < 0 and sel > len(anim_die_collection) - 1: return
+	anim_die_selection = sel
+
+
+func set_anim_starve_selection(sel : int):
+	if sel < 0 and sel > len(anim_starve_collection) - 1: return
+	anim_starve_selection = sel
 
 
 # --
@@ -120,12 +157,18 @@ func get_is_dying(): return is_dying
 # --
 # private methods
 
+func _select_random_anim():
+	self.set_anim_die_selection(randi_range(0, len(anim_die_collection) - 1))
+	self.set_anim_starve_selection(randi_range(0, len(anim_starve_collection) - 1))
+
+
 func _character_anim_reset():
 
 	# alive state
 	is_blinking = false
 	is_dying = false
 	is_dead = false
+	is_starved = false
 
 	# set frame
 	sprites.frame = generation
@@ -133,6 +176,12 @@ func _character_anim_reset():
 
 	# start blink timer
 	blink_timer.start(blink_time_min)
+
+	# select die anim
+	self._select_random_anim()
+
+	# set to start time
+	anim.stop()
 
 
 func _on_blink_timer_timeout():

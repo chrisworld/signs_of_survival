@@ -185,7 +185,7 @@ func _on_character_dying():
 func _on_starving_timer_starved():
 
 	# dies of starving
-	character.set_state_dying()
+	character.set_state_starved()
 
 	# show label
 	sign_world_canvas.show_label_starved()

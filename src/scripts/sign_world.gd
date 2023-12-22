@@ -152,6 +152,7 @@ func _on_cutscene_cutscene_full_dark():
 
 	# check if its the last generation who died
 	if is_last_generation: 
+		survival_girl.reset()
 		loose_cutscene_full_dark.emit()
 		return
 

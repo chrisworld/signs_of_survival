@@ -1,0 +1,168 @@
+[gd_scene load_steps=24 format=3 uid="uid://cig8sc2tmtegi"]
+
+[ext_resource type="Script" path="res://scripts/sign_world.gd" id="1_8k6g0"]
+[ext_resource type="SpriteFrames" path="res://anim/background_sprite_frames.tres" id="2_2xhil"]
+[ext_resource type="Texture2D" uid="uid://cn4t7fu4vfjrk" path="res://art/sign_static_right_side.png" id="3_grljy"]
+[ext_resource type="PackedScene" uid="uid://0iccmywhl76q" path="res://prefabs/sign.tscn" id="4_oftb4"]
+[ext_resource type="AudioStream" uid="uid://bkypawo5lcbmf" path="res://audio/sfx/wood-break-1.wav" id="5_ir2vf"]
+[ext_resource type="AudioStream" uid="uid://celaprfbb3pha" path="res://audio/sfx/wood-break-2.wav" id="6_84hac"]
+[ext_resource type="AudioStream" uid="uid://c5iyak8ouuw17" path="res://audio/sfx/wood-break-3.wav" id="7_0vk5c"]
+[ext_resource type="AudioStream" uid="uid://cfo4y4fste1ag" path="res://audio/sfx/wood-break-4.wav" id="8_38ewu"]
+[ext_resource type="AudioStream" uid="uid://bs8kvor4jylph" path="res://audio/sfx/wood-break-5.wav" id="9_y0mha"]
+[ext_resource type="AudioStream" uid="uid://c4rwgmjc45w62" path="res://audio/sfx/wood-break-6.wav" id="10_ke45s"]
+[ext_resource type="AudioStream" uid="uid://de7ekyg8eaha5" path="res://audio/sfx/sign_snap.wav" id="11_q4b61"]
+[ext_resource type="AudioStream" uid="uid://d2khevmalk8gy" path="res://audio/sfx/watch_out.wav" id="12_h7ek3"]
+[ext_resource type="PackedScene" uid="uid://bd11ec50fhc2a" path="res://prefabs/character.tscn" id="13_ogdo1"]
+[ext_resource type="AudioStream" uid="uid://dv03hfp2s85tr" path="res://audio/sfx/crushed_short.wav" id="14_4yieg"]
+[ext_resource type="AudioStream" uid="uid://idijfgbqwdb6" path="res://audio/sfx/crushed_full.wav" id="15_8qwmc"]
+[ext_resource type="PackedScene" uid="uid://cuj3lhsp8iuq1" path="res://prefabs/survival_girl.tscn" id="16_0qqvb"]
+[ext_resource type="PackedScene" uid="uid://ck3whmkemwclf" path="res://prefabs/ground.tscn" id="17_1h2kp"]
+[ext_resource type="AudioStream" uid="uid://dpofvbl32qejg" path="res://audio/sfx/stomach-growl-pish_01-5925.mp3" id="18_8kwy8"]
+[ext_resource type="Script" path="res://scripts/starving_timer.gd" id="19_u3022"]
+[ext_resource type="Script" path="res://scripts/sign_world_canvas.gd" id="20_ueqgr"]
+[ext_resource type="LabelSettings" uid="uid://cc4luhxpmp6qc" path="res://themes/my_label_settings.tres" id="21_4amhw"]
+[ext_resource type="LabelSettings" uid="uid://21ceqv5ycliv" path="res://themes/big_label_settings.tres" id="22_duk8f"]
+[ext_resource type="PackedScene" uid="uid://dh6o5h3dcv6d5" path="res://prefabs/cutscene.tscn" id="23_w5i6k"]
+
+[node name="sign_world" type="Node2D"]
+script = ExtResource("1_8k6g0")
+
+[node name="background" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(512, 256)
+sprite_frames = ExtResource("2_2xhil")
+
+[node name="objects" type="Node2D" parent="."]
+position = Vector2(584, 328)
+
+[node name="sign" type="Node2D" parent="objects"]
+
+[node name="sign_position_marker" type="Marker2D" parent="objects/sign"]
+texture_filter = 1
+position = Vector2(-32, -96)
+
+[node name="sign_static_part" type="Sprite2D" parent="objects/sign"]
+texture_filter = 1
+position = Vector2(-32, -96)
+texture = ExtResource("3_grljy")
+
+[node name="sign_moving_part" parent="objects/sign" instance=ExtResource("4_oftb4")]
+position = Vector2(-32, -96)
+max_num_clicks = 10
+
+[node name="sfx_sign_hit" type="Node2D" parent="objects/sign/sign_moving_part"]
+
+[node name="sfx_sign_hit" type="AudioStreamPlayer2D" parent="objects/sign/sign_moving_part/sfx_sign_hit"]
+stream = ExtResource("5_ir2vf")
+volume_db = -20.0
+
+[node name="sfx_sign_hit2" type="AudioStreamPlayer2D" parent="objects/sign/sign_moving_part/sfx_sign_hit"]
+stream = ExtResource("6_84hac")
+volume_db = -20.0
+
+[node name="sfx_sign_hit3" type="AudioStreamPlayer2D" parent="objects/sign/sign_moving_part/sfx_sign_hit"]
+stream = ExtResource("7_0vk5c")
+volume_db = -20.0
+
+[node name="sfx_sign_hit4" type="AudioStreamPlayer2D" parent="objects/sign/sign_moving_part/sfx_sign_hit"]
+stream = ExtResource("8_38ewu")
+volume_db = -20.0
+
+[node name="sfx_sign_hit5" type="AudioStreamPlayer2D" parent="objects/sign/sign_moving_part/sfx_sign_hit"]
+stream = ExtResource("9_y0mha")
+volume_db = -20.0
+
+[node name="sfx_sign_hit6" type="AudioStreamPlayer2D" parent="objects/sign/sign_moving_part/sfx_sign_hit"]
+stream = ExtResource("10_ke45s")
+volume_db = -20.0
+
+[node name="sign_snap" type="AudioStreamPlayer2D" parent="objects/sign/sign_moving_part"]
+stream = ExtResource("11_q4b61")
+
+[node name="watch_out" type="AudioStreamPlayer2D" parent="objects/sign/sign_moving_part"]
+stream = ExtResource("12_h7ek3")
+volume_db = 20.0
+
+[node name="character" parent="objects" instance=ExtResource("13_ogdo1")]
+position = Vector2(-72, 244)
+
+[node name="sfx_dying" type="AudioStreamPlayer2D" parent="objects/character"]
+position = Vector2(-512, -572)
+stream = ExtResource("14_4yieg")
+
+[node name="sfx_dying_special" type="AudioStreamPlayer2D" parent="objects/character"]
+position = Vector2(-512, -572)
+stream = ExtResource("15_8qwmc")
+
+[node name="survival_girl" parent="objects" instance=ExtResource("16_0qqvb")]
+position = Vector2(-392, 240)
+
+[node name="ground" parent="objects" instance=ExtResource("17_1h2kp")]
+position = Vector2(-74, 298)
+
+[node name="survival_girl" parent="." instance=ExtResource("16_0qqvb")]
+position = Vector2(75, 495)
+
+[node name="starving_timer" type="Timer" parent="."]
+script = ExtResource("19_u3022")
+starve_time = 12.0
+
+[node name="sign_world_canvas" type="CanvasLayer" parent="."]
+script = ExtResource("20_ueqgr")
+
+[node name="label_watch_out" type="Label" parent="sign_world_canvas"]
+offset_left = 328.0
+offset_top = 310.0
+offset_right = 614.0
+offset_bottom = 355.0
+text = "Wat-ta-cch ouu-uut!!!!"
+label_settings = ExtResource("21_4amhw")
+
+[node name="label_starved" type="Label" parent="sign_world_canvas"]
+offset_left = 436.0
+offset_top = 279.0
+offset_right = 688.0
+offset_bottom = 340.0
+text = "Starved!"
+label_settings = ExtResource("22_duk8f")
+
+[node name="container_starve_countdown" type="HBoxContainer" parent="sign_world_canvas"]
+offset_left = 26.0
+offset_top = 35.0
+offset_right = 338.0
+offset_bottom = 80.0
+
+[node name="label_text" type="Label" parent="sign_world_canvas/container_starve_countdown"]
+layout_mode = 2
+text = "Time until you stave: "
+label_settings = ExtResource("21_4amhw")
+
+[node name="label_starve_time" type="Label" parent="sign_world_canvas/container_starve_countdown"]
+layout_mode = 2
+label_settings = ExtResource("21_4amhw")
+
+[node name="cutscene" parent="." instance=ExtResource("23_w5i6k")]
+visible = false
+
+[node name="sfx_grumble" type="Node2D" parent="."]
+
+[node name="sfx_grumble2" type="AudioStreamPlayer2D" parent="sfx_grumble"]
+stream = ExtResource("18_8kwy8")
+
+[node name="sfx_grumble3" type="AudioStreamPlayer2D" parent="sfx_grumble"]
+stream = ExtResource("18_8kwy8")
+
+[node name="sfx_grumble" type="AudioStreamPlayer2D" parent="sfx_grumble"]
+stream = ExtResource("18_8kwy8")
+
+[connection signal="sign_falls" from="objects/sign/sign_moving_part" to="." method="_on_sign_moving_part_sign_falls"]
+[connection signal="dead" from="objects/character" to="." method="_on_character_dead"]
+[connection signal="dying" from="objects/character" to="." method="_on_character_dying"]
+[connection signal="last_generation" from="objects/character" to="." method="_on_character_last_generation"]
+[connection signal="rescuing_anim_done" from="objects/survival_girl" to="." method="_on_survival_girl_rescuing_anim_done"]
+[connection signal="she_rescues_you" from="objects/survival_girl" to="." method="_on_survival_girl_she_rescues_you"]
+[connection signal="starved" from="starving_timer" to="." method="_on_starving_timer_starved"]
+[connection signal="survival_girl_appears" from="starving_timer" to="." method="_on_starving_timer_survival_girl_appears"]
+[connection signal="timeout" from="starving_timer" to="starving_timer" method="_on_timeout"]
+[connection signal="cutscene_finished" from="cutscene" to="." method="_on_cutscene_cutscene_finished"]
+[connection signal="cutscene_full_dark" from="cutscene" to="." method="_on_cutscene_cutscene_full_dark"]

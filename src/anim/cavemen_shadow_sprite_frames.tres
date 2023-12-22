@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://bmqedkkpn2h3a"]
+
+[ext_resource type="Texture2D" uid="uid://vfnrmmcoqrq2" path="res://art/Cavemen/Cavemen_shadow.png" id="1_bperx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbqyt"]
+atlas = ExtResource("1_bperx")
+region = Rect2(0, 0, 75, 75)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbqyt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

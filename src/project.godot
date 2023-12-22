@@ -13,7 +13,7 @@ config_version=5
 config/name="signs_of_survival"
 run/main_scene="res://scenes/signs_of_survival.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://art/icons/icon.png"
 
 [autoload]
 

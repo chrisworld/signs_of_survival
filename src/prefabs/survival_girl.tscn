@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cuj3lhsp8iuq1"]
+[gd_scene load_steps=5 format=3 uid="uid://cuj3lhsp8iuq1"]
 
 [ext_resource type="Script" path="res://scripts/survival_girl.gd" id="1_4almb"]
+[ext_resource type="SpriteFrames" uid="uid://bmqedkkpn2h3a" path="res://anim/cavemen_shadow_sprite_frames.tres" id="2_kxrpc"]
 [ext_resource type="SpriteFrames" uid="uid://cuaygdg4uu8ys" path="res://anim/survival_girl_sprite_frames.tres" id="2_p7sua"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dtjr2"]
@@ -9,6 +10,11 @@ size = Vector2(58, 74)
 [node name="survival_girl" type="Node2D"]
 position = Vector2(94, 64)
 script = ExtResource("1_4almb")
+
+[node name="shadow" type="AnimatedSprite2D" parent="."]
+position = Vector2(-4, 10)
+scale = Vector2(0.8, 0.8)
+sprite_frames = ExtResource("2_kxrpc")
 
 [node name="sprites" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -19,6 +25,7 @@ frame_progress = 0.269047
 [node name="survival_girl_area" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="survival_girl_area"]
+visible = false
 texture_filter = 1
 position = Vector2(-7, 0)
 shape = SubResource("RectangleShape2D_dtjr2")

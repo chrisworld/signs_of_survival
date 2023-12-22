@@ -20,7 +20,8 @@ var anim_die_selection = 0
 var anim_starve_selection = 0
 
 # refs
-@onready var sprites = $body/sprites 
+@onready var sprites = $body/sprites
+@onready var shadow = $body/shadow
 @onready var blink_timer = $blink_timer
 @onready var blink_duration_timer = $blink_duration_timer
 @onready var dead_timer = $dead_timer
@@ -100,6 +101,9 @@ func set_state_dying():
 	sprites.animation = anim_cavemen_dying
 	sprites.frame = generation
 
+	# hide shadow
+	shadow.hide()
+
 	# var and signal
 	is_dying = true
 	dying.emit()
@@ -173,6 +177,9 @@ func _character_anim_reset():
 	# set frame
 	sprites.frame = generation
 	sprites.animation = anim_cavemen_sitting
+
+	# shadow
+	shadow.show()
 
 	# start blink timer
 	blink_timer.start(blink_time_min)

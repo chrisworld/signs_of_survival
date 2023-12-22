@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bd11ec50fhc2a"]
+[gd_scene load_steps=13 format=3 uid="uid://bd11ec50fhc2a"]
 
 [ext_resource type="Script" path="res://scripts/character.gd" id="1_r3cvs"]
 [ext_resource type="SpriteFrames" uid="uid://dt8y23sbwd1tc" path="res://anim/cavemen_sprite_frames.tres" id="2_gicsh"]
+[ext_resource type="SpriteFrames" uid="uid://bmqedkkpn2h3a" path="res://anim/cavemen_shadow_sprite_frames.tres" id="2_tnrbb"]
 [ext_resource type="AudioStream" uid="uid://dv03hfp2s85tr" path="res://audio/sfx/crushed_short.wav" id="3_tsyyu"]
 [ext_resource type="AudioStream" uid="uid://idijfgbqwdb6" path="res://audio/sfx/crushed_full.wav" id="4_wl7cc"]
 
@@ -190,6 +191,10 @@ script = ExtResource("1_r3cvs")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="body"]
 position = Vector2(2.5, -2)
 shape = SubResource("RectangleShape2D_vcx0h")
+
+[node name="shadow" type="AnimatedSprite2D" parent="body"]
+sprite_frames = ExtResource("2_tnrbb")
+frame_progress = 0.464493
 
 [node name="sprites" type="AnimatedSprite2D" parent="body"]
 sprite_frames = ExtResource("2_gicsh")

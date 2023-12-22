@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://bd11ec50fhc2a"]
+[gd_scene load_steps=14 format=3 uid="uid://bd11ec50fhc2a"]
 
 [ext_resource type="Script" path="res://scripts/character.gd" id="1_r3cvs"]
 [ext_resource type="SpriteFrames" uid="uid://dt8y23sbwd1tc" path="res://anim/cavemen_sprite_frames.tres" id="2_gicsh"]
-[ext_resource type="SpriteFrames" uid="uid://bmqedkkpn2h3a" path="res://anim/cavemen_shadow_sprite_frames.tres" id="2_tnrbb"]
+[ext_resource type="SpriteFrames" uid="uid://1aumtcytn3g3" path="res://anim/cavemen_shadow_sprite_frames.tres" id="2_tnrbb"]
 [ext_resource type="AudioStream" uid="uid://dv03hfp2s85tr" path="res://audio/sfx/crushed_short.wav" id="3_tsyyu"]
 [ext_resource type="AudioStream" uid="uid://idijfgbqwdb6" path="res://audio/sfx/crushed_full.wav" id="4_wl7cc"]
+[ext_resource type="AudioStream" uid="uid://dojsbtxvl5a7w" path="res://audio/sfx/starve.wav" id="5_vwlc7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vcx0h"]
 size = Vector2(73, 76)
@@ -214,6 +215,10 @@ libraries = {
 [node name="sfx_dying" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(-512, -572)
 stream = ExtResource("3_tsyyu")
+
+[node name="sfx_starving" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-512, -572)
+stream = ExtResource("5_vwlc7")
 
 [node name="sfx_dying_special" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(-512, -572)

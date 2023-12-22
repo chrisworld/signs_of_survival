@@ -6,8 +6,11 @@ signal rescuing_anim_done
 
 # refs
 @onready var sprites = $sprites 
+@onready var sfx_girl_chuckle = $sfx_girl_chuckle
+@onready var sfx_girl_voice = $sfx_girl_voice
 
 # vars
+var pos_sfx_girl_voice
 var she_rescues_you_flag = false
 
 # cons anim names
@@ -26,6 +29,8 @@ func _ready():
 
 func reset():
 	self._ready()
+	sfx_girl_voice.stop()
+	sfx_girl_chuckle.stop()
 	
 
 func make_her_visible():
@@ -38,7 +43,7 @@ func make_her_visible():
 
 	# play animation
 	sprites.play()
-
+	sfx_girl_voice.play()
 
 # --
 # signals
@@ -58,6 +63,8 @@ func _on_survival_girl_area_input_event(_viewport, event, _shape_idx):
 		
 		# successful click
 		she_rescues_you_flag = true
+		sfx_girl_voice.stop()
+		sfx_girl_chuckle.stop()
 		she_rescues_you.emit()
 		print("survival girl comes for rescue;)")
 
@@ -67,7 +74,14 @@ func _on_survival_girl_area_input_event(_viewport, event, _shape_idx):
 
 func _on_survival_girl_area_mouse_entered():
 	sprites.set_animation(anim_smile)
-
+	if she_rescues_you_flag: return
+	pos_sfx_girl_voice = sfx_girl_voice.get_playback_position()
+	sfx_girl_voice.stop()
+	sfx_girl_chuckle.play()
+	
 
 func _on_survival_girl_area_mouse_exited():
 	sprites.set_animation(anim_look)
+	if she_rescues_you_flag: return
+	sfx_girl_chuckle.stop()
+	sfx_girl_voice.play(pos_sfx_girl_voice)

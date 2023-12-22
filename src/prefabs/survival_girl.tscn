@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cuj3lhsp8iuq1"]
+[gd_scene load_steps=7 format=3 uid="uid://cuj3lhsp8iuq1"]
 
 [ext_resource type="Script" path="res://scripts/survival_girl.gd" id="1_4almb"]
-[ext_resource type="SpriteFrames" uid="uid://bmqedkkpn2h3a" path="res://anim/cavemen_shadow_sprite_frames.tres" id="2_kxrpc"]
+[ext_resource type="SpriteFrames" uid="uid://1aumtcytn3g3" path="res://anim/cavemen_shadow_sprite_frames.tres" id="2_kxrpc"]
 [ext_resource type="SpriteFrames" uid="uid://cuaygdg4uu8ys" path="res://anim/survival_girl_sprite_frames.tres" id="2_p7sua"]
+[ext_resource type="AudioStream" uid="uid://dludsj44eeh4d" path="res://audio/sfx/hmms-various-1-7175.mp3" id="4_n68gl"]
+[ext_resource type="AudioStream" uid="uid://dtwd1ups1ca05" path="res://audio/sfx/girl-chucklewav-14669.mp3" id="5_0yd1m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dtjr2"]
 size = Vector2(58, 74)
@@ -31,6 +33,14 @@ position = Vector2(-7, 0)
 shape = SubResource("RectangleShape2D_dtjr2")
 
 [node name="rand_timer" type="Timer" parent="."]
+
+[node name="sfx_girl_voice" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_n68gl")
+volume_db = -10.0
+
+[node name="sfx_girl_chuckle" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_0yd1m")
+volume_db = -10.0
 
 [connection signal="input_event" from="survival_girl_area" to="." method="_on_survival_girl_area_input_event"]
 [connection signal="mouse_entered" from="survival_girl_area" to="." method="_on_survival_girl_area_mouse_entered"]

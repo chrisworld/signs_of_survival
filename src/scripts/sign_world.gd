@@ -16,6 +16,7 @@ signal win_cutscene_full_dark
 @onready var survival_girl = $objects/survival_girl
 @onready var cutscene = $cutscene
 @onready var starving_timer = $starving_timer
+@onready var sfx_lose_game = $sfx_lose_game
 
 
 # vars
@@ -167,6 +168,7 @@ func _on_character_dead():
 		loose_game.emit()
 		cutscene.cutscene_play(Enums.SceneType.last_generation_scene)
 		is_last_generation_dead = true
+		sfx_lose_game.play()
 		return
 
 	# create cutscene

@@ -27,6 +27,7 @@ var anim_starve_selection = 0
 @onready var dead_timer = $dead_timer
 @onready var sfx_dying = $sfx_dying
 @onready var sfx_dying_special = $sfx_dying_special
+@onready var sfx_starving = $sfx_starving
 @onready var anim = $anim
 
 # anim names
@@ -117,6 +118,7 @@ func set_state_dying():
 	# starve animation
 	if is_starved:
 		anim.play(anim_starve_collection[anim_starve_selection])
+		sfx_starving.play()
 		return
 
 	# start animation

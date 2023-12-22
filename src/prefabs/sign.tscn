@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://0iccmywhl76q"]
+[gd_scene load_steps=8 format=3 uid="uid://0iccmywhl76q"]
 
 [ext_resource type="Script" path="res://scripts/sign.gd" id="1_4pyq8"]
 [ext_resource type="PhysicsMaterial" uid="uid://oavh7jculipf" path="res://materials/sign_physics_material.tres" id="1_ya6e7"]
@@ -6,6 +6,44 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_trxjc"]
 size = Vector2(100.667, 25.6667)
+
+[sub_resource type="Animation" id="Animation_ima7c"]
+resource_name = "rumble"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1.56917, 0.68302, 0.535887, 2.14355, 0.353553, 1.6245),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-2, -2), Vector2(2, 2), Vector2(2, -2), Vector2(-2, 2), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7l8e1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8qq0j"]
+_data = {
+"RESET": SubResource("Animation_7l8e1"),
+"rumble": SubResource("Animation_ima7c")
+}
 
 [node name="sign_moving_part" type="RigidBody2D"]
 mass = 50.0
@@ -29,5 +67,10 @@ scale = Vector2(3, 3)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sign_area"]
 position = Vector2(-0.333336, 0.166667)
 shape = SubResource("RectangleShape2D_trxjc")
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8qq0j")
+}
 
 [connection signal="input_event" from="sign_area" to="." method="_on_sign_area_input_event"]

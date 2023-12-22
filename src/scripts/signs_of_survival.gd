@@ -15,9 +15,6 @@ extends Node2D
 # playing flag
 var is_playing = false
 
-# time to show win canvas
-const win_canvas_on_time = 12.0
-
 
 func _ready():
 	
@@ -107,6 +104,7 @@ func credits_canvas_on():
 	bgm_main_game_loop.stop()
 	if not bgm_win.playing:
 		bgm_credits.play()
+		
 
 func credits_canvas_off():
 
@@ -126,13 +124,16 @@ func win_canvas_on():
 	sign_world.pause_world()
 
 	# timer
-	$win_canvas/win_canvas_on_timer.start(win_canvas_on_time)
+	win_canvas.start_timer()
 
 
 func win_canvas_off():
 
 	# show
 	win_canvas.hide()
+
+	# stop timer
+	win_canvas.stop_timer()
 
 
 # --
@@ -174,7 +175,6 @@ func _on_sign_world_loose_cutscene_full_dark():
 func _on_sign_world_win_cutscene_full_dark():
 	credits_canvas_off()
 	title_canvas_off()
-	#credits_canvas_on()
 	win_canvas_on()
 	bgm_main_game_loop.stop()
 	bgm_win.play()

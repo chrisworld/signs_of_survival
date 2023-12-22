@@ -1,8 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://darymjq32xhe2"]
+[gd_scene load_steps=23 format=3 uid="uid://darymjq32xhe2"]
 
 [ext_resource type="PackedScene" uid="uid://0iccmywhl76q" path="res://prefabs/sign.tscn" id="1_8kfhy"]
 [ext_resource type="Script" path="res://scripts/sign_world.gd" id="1_tahyx"]
-[ext_resource type="SpriteFrames" path="res://anim/background_sprite_frames.tres" id="2_1je1o"]
+[ext_resource type="SpriteFrames" uid="uid://bcup06it8m7qq" path="res://anim/background_sprite_frames.tres" id="2_1je1o"]
 [ext_resource type="PackedScene" uid="uid://ck3whmkemwclf" path="res://prefabs/ground.tscn" id="2_nw6t4"]
 [ext_resource type="Texture2D" uid="uid://cn4t7fu4vfjrk" path="res://art/sign_static_right_side.png" id="3_u4y7a"]
 [ext_resource type="AudioStream" uid="uid://de7ekyg8eaha5" path="res://audio/sfx/sign_snap.wav" id="4_6at6o"]
@@ -18,9 +18,9 @@
 [ext_resource type="AudioStream" uid="uid://cfo4y4fste1ag" path="res://audio/sfx/wood-break-4.wav" id="17_utuim"]
 [ext_resource type="AudioStream" uid="uid://bs8kvor4jylph" path="res://audio/sfx/wood-break-5.wav" id="18_ial6y"]
 [ext_resource type="AudioStream" uid="uid://c4rwgmjc45w62" path="res://audio/sfx/wood-break-6.wav" id="19_a1pmy"]
-[ext_resource type="LabelSettings" path="res://themes/game_message_label_settings.tres" id="20_obbds"]
+[ext_resource type="LabelSettings" uid="uid://b4otkanf75ria" path="res://themes/game_message_label_settings.tres" id="20_obbds"]
 [ext_resource type="AudioStream" uid="uid://cw2xwaj221w6g" path="res://audio/sfx/dead-8bit-41400.mp3" id="21_kxdgm"]
-[ext_resource type="LabelSettings" path="res://themes/starve_time_label_settings.tres" id="21_v6stp"]
+[ext_resource type="LabelSettings" uid="uid://csqnmvr1oral8" path="res://themes/starve_time_label_settings.tres" id="21_v6stp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t2yta"]
 

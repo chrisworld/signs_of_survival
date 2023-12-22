@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/character.gd" id="1_r3cvs"]
 [ext_resource type="SpriteFrames" uid="uid://dt8y23sbwd1tc" path="res://anim/cavemen_sprite_frames.tres" id="2_gicsh"]
-[ext_resource type="SpriteFrames" uid="uid://1aumtcytn3g3" path="res://anim/cavemen_shadow_sprite_frames.tres" id="2_tnrbb"]
+[ext_resource type="SpriteFrames" uid="uid://bmqedkkpn2h3a" path="res://anim/cavemen_shadow_sprite_frames.tres" id="2_tnrbb"]
 [ext_resource type="AudioStream" uid="uid://dv03hfp2s85tr" path="res://audio/sfx/crushed_short.wav" id="3_tsyyu"]
 [ext_resource type="AudioStream" uid="uid://idijfgbqwdb6" path="res://audio/sfx/crushed_full.wav" id="4_wl7cc"]
 [ext_resource type="AudioStream" uid="uid://dojsbtxvl5a7w" path="res://audio/sfx/starve.wav" id="5_vwlc7"]

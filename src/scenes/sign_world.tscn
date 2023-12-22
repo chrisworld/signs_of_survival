@@ -127,7 +127,7 @@ offset_bottom = 77.0
 
 [node name="label_text" type="Label" parent="sign_world_canvas/container_starve_countdown"]
 layout_mode = 2
-text = "Time until you stave: "
+text = "Time until you starve: "
 label_settings = ExtResource("21_v6stp")
 
 [node name="label_starve_time" type="Label" parent="sign_world_canvas/container_starve_countdown"]

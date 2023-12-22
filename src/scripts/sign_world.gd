@@ -164,7 +164,6 @@ func _on_character_dead():
 
 	# last generation is different
 	if is_last_generation:
-
 		# loose cutscene
 		loose_game.emit()
 		cutscene.cutscene_play(Enums.SceneType.last_generation_scene)
@@ -177,10 +176,11 @@ func _on_character_dead():
 
 
 func _on_character_dying():
-
+	
+	if is_last_generation:
+		survival_girl.is_already_dying = true
 	# label watch invisible
 	sign_world_canvas.hide_label_watch_out()
-
 	# stop time
 	starving_timer.stop_counting()
 

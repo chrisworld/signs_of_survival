@@ -4,6 +4,8 @@ extends Node2D
 signal she_rescues_you
 signal rescuing_anim_done
 
+@export var is_already_dying = false
+
 # refs
 @onready var sprites = $sprites 
 @onready var sfx_girl_chuckle = $sfx_girl_chuckle
@@ -31,6 +33,8 @@ func reset():
 	self._ready()
 	sfx_girl_voice.stop()
 	sfx_girl_chuckle.stop()
+	she_rescues_you_flag = false
+	is_already_dying = false
 
 
 func make_her_visible():
@@ -60,7 +64,7 @@ func _on_survival_girl_area_input_event(_viewport, event, _shape_idx):
 		if not event.button_index == MOUSE_BUTTON_LEFT: return
 		if not event.pressed: return
 		if event.is_echo(): return
-		
+		if is_already_dying: return
 		# successful click
 		she_rescues_you_flag = true
 		sfx_girl_voice.stop()

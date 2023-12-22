@@ -52,9 +52,14 @@ layout_mode = 2
 text = "| Art"
 label_settings = ExtResource("5_dotqj")
 
-[node name="art2" type="Label" parent="cavemen/eworhard/eworhard/VBoxContainer"]
+[node name="sound" type="Label" parent="cavemen/eworhard/eworhard/VBoxContainer"]
 layout_mode = 2
 text = "| Sound Effects"
+label_settings = ExtResource("5_dotqj")
+
+[node name="AI" type="Label" parent="cavemen/eworhard/eworhard/VBoxContainer"]
+layout_mode = 2
+text = "| AI Ambassador"
 label_settings = ExtResource("5_dotqj")
 
 [node name="gartenschlaefer" type="Node2D" parent="cavemen"]

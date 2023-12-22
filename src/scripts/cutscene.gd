@@ -4,6 +4,10 @@ extends CanvasLayer
 signal cutscene_finished
 signal cutscene_full_dark
 
+# constants
+@export var transition_speed = 0.8
+@export var full_dark_time = 1.5
+
 # refs
 @onready var blackout_rect = $blackout_rect
 @onready var full_dark_timer = $full_dark_timer
@@ -23,10 +27,6 @@ var is_full_light = true
 
 # full dark iterations
 var full_dark_mode_iterations = 0
-
-# constants
-const transition_speed = 0.8
-const full_dark_time = 2.0
 
 
 func _ready():

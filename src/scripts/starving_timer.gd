@@ -55,6 +55,12 @@ func _process(_delta):
 # --
 # public methods
 
+func start_timer_from_new():
+
+	# set actual time
+	self.start(starve_time)
+	actual_time = starve_time
+
 
 func reset():
 
@@ -68,11 +74,8 @@ func reset():
 
 func reset_time():
 	
-	# set time
-	self.start(starve_time)
-
 	# reset state
-	is_starved = false
+	actual_time = starve_time
 
 
 func stop_counting():

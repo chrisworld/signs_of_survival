@@ -41,7 +41,6 @@ texture_filter = 1
 position = Vector2(-32, -96)
 
 [node name="sign_static_part" type="Sprite2D" parent="objects/sign"]
-visible = false
 texture_filter = 1
 position = Vector2(-32, -96)
 texture = ExtResource("3_u4y7a")
@@ -106,7 +105,7 @@ position = Vector2(75, 495)
 
 [node name="starving_timer" type="Timer" parent="."]
 script = ExtResource("8_a1rqe")
-starve_time = 2.0
+starve_time = 12.0
 
 [node name="sign_world_canvas" type="CanvasLayer" parent="."]
 script = ExtResource("6_u7uiv")
@@ -145,6 +144,7 @@ label_settings = ExtResource("6_e6rxa")
 [node name="cutscene" parent="." instance=ExtResource("8_2um15")]
 visible = false
 
+[connection signal="sign_falls" from="objects/sign/sign_moving_part" to="." method="_on_sign_moving_part_sign_falls"]
 [connection signal="dead" from="objects/character" to="." method="_on_character_dead"]
 [connection signal="dying" from="objects/character" to="." method="_on_character_dying"]
 [connection signal="last_generation" from="objects/character" to="." method="_on_character_last_generation"]

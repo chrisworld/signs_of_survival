@@ -14,6 +14,7 @@ signal sign_falls
 @onready var sfx_sign_hit_parent = $sfx_sign_hit
 @onready var sfx_sign_snap = $sign_snap
 @onready var sfx_watch_out = $watch_out
+@onready var anim = $anim
 
 # num click
 var num_clicks = 0
@@ -27,6 +28,9 @@ var actual_frame = 0
 
 # modulator
 var next_frame_from_clicks_mod = 0
+
+# const
+const anim_rumble = "rumble"
 
 
 func _ready():
@@ -95,8 +99,8 @@ func _max_number_of_clicks_reached():
 	# last frame
 	sign_anim.frame = actual_frame
 	
-	# add a little impulse
-	self.apply_torque_impulse(-0.3)
+	# stop anim
+	anim.stop()
 	
 
 func _on_sign_area_input_event(_viewport, event, _shape_idx):
@@ -119,6 +123,7 @@ func _on_sign_area_input_event(_viewport, event, _shape_idx):
 		# compare
 		if num_clicks >= max_num_clicks:
 			self._max_number_of_clicks_reached()
+		else: anim.play(anim_rumble)
 		
 		# modulator
 		if num_clicks % next_frame_from_clicks_mod: return

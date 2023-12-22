@@ -35,18 +35,16 @@ sprite_frames = ExtResource("2_1je1o")
 position = Vector2(584, 328)
 
 [node name="sign" type="Node2D" parent="objects"]
+position = Vector2(-32, -96)
 
 [node name="sign_position_marker" type="Marker2D" parent="objects/sign"]
 texture_filter = 1
-position = Vector2(-32, -96)
 
 [node name="sign_static_part" type="Sprite2D" parent="objects/sign"]
 texture_filter = 1
-position = Vector2(-32, -96)
 texture = ExtResource("3_u4y7a")
 
 [node name="sign_moving_part" parent="objects/sign" instance=ExtResource("1_8kfhy")]
-position = Vector2(-32, -96)
 max_num_clicks = 10
 
 [node name="sfx_sign_hit" type="Node" parent="objects/sign/sign_moving_part"]
@@ -83,14 +81,13 @@ stream = ExtResource("11_hixvp")
 volume_db = 20.0
 
 [node name="physics_hack" type="StaticBody2D" parent="objects/sign"]
-position = Vector2(46, -47)
+position = Vector2(79, 49)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="objects/sign/physics_hack"]
 shape = SubResource("RectangleShape2D_t2yta")
 
 [node name="character" parent="objects" instance=ExtResource("5_46d2p")]
 position = Vector2(-72, 244)
-debug_set_to_second_last_generation = true
 
 [node name="survival_girl" parent="objects" instance=ExtResource("6_kom1c")]
 position = Vector2(-392, 240)
@@ -100,7 +97,7 @@ position = Vector2(-74, 298)
 
 [node name="starving_timer" type="Timer" parent="."]
 script = ExtResource("8_a1rqe")
-starve_time = 12.0
+starve_time = 15.0
 
 [node name="sign_world_canvas" type="CanvasLayer" parent="."]
 script = ExtResource("6_u7uiv")
@@ -138,6 +135,8 @@ label_settings = ExtResource("21_v6stp")
 
 [node name="cutscene" parent="." instance=ExtResource("8_2um15")]
 layer = 5
+transition_speed = 1.2
+full_dark_time = 1.0
 
 [connection signal="sign_falls" from="objects/sign/sign_moving_part" to="." method="_on_sign_moving_part_sign_falls"]
 [connection signal="dead" from="objects/character" to="." method="_on_character_dead"]

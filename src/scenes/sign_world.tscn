@@ -2,17 +2,15 @@
 
 [ext_resource type="PackedScene" uid="uid://0iccmywhl76q" path="res://prefabs/sign.tscn" id="1_8kfhy"]
 [ext_resource type="Script" path="res://scripts/sign_world.gd" id="1_tahyx"]
-[ext_resource type="SpriteFrames" path="res://anim/background_sprite_frames.tres" id="2_1je1o"]
+[ext_resource type="SpriteFrames" uid="uid://bcup06it8m7qq" path="res://anim/background_sprite_frames.tres" id="2_1je1o"]
 [ext_resource type="PackedScene" uid="uid://ck3whmkemwclf" path="res://prefabs/ground.tscn" id="2_nw6t4"]
 [ext_resource type="Texture2D" uid="uid://cn4t7fu4vfjrk" path="res://art/sign_static_right_side.png" id="3_u4y7a"]
 [ext_resource type="AudioStream" uid="uid://de7ekyg8eaha5" path="res://audio/sfx/sign_snap.wav" id="4_6at6o"]
 [ext_resource type="PackedScene" uid="uid://bd11ec50fhc2a" path="res://prefabs/character.tscn" id="5_46d2p"]
-[ext_resource type="LabelSettings" uid="uid://cc4luhxpmp6qc" path="res://themes/my_label_settings.tres" id="6_e6rxa"]
 [ext_resource type="PackedScene" uid="uid://cuj3lhsp8iuq1" path="res://prefabs/survival_girl.tscn" id="6_kom1c"]
 [ext_resource type="Script" path="res://scripts/sign_world_canvas.gd" id="6_u7uiv"]
 [ext_resource type="PackedScene" uid="uid://dh6o5h3dcv6d5" path="res://prefabs/cutscene.tscn" id="8_2um15"]
 [ext_resource type="Script" path="res://scripts/starving_timer.gd" id="8_a1rqe"]
-[ext_resource type="LabelSettings" uid="uid://21ceqv5ycliv" path="res://themes/big_label_settings.tres" id="9_qulp1"]
 [ext_resource type="AudioStream" uid="uid://d2khevmalk8gy" path="res://audio/sfx/watch_out.wav" id="11_hixvp"]
 [ext_resource type="AudioStream" uid="uid://bkypawo5lcbmf" path="res://audio/sfx/wood-break-1.wav" id="14_xh5xq"]
 [ext_resource type="AudioStream" uid="uid://dv03hfp2s85tr" path="res://audio/sfx/crushed_short.wav" id="15_3f8ph"]
@@ -22,6 +20,8 @@
 [ext_resource type="AudioStream" uid="uid://cfo4y4fste1ag" path="res://audio/sfx/wood-break-4.wav" id="17_utuim"]
 [ext_resource type="AudioStream" uid="uid://bs8kvor4jylph" path="res://audio/sfx/wood-break-5.wav" id="18_ial6y"]
 [ext_resource type="AudioStream" uid="uid://c4rwgmjc45w62" path="res://audio/sfx/wood-break-6.wav" id="19_a1pmy"]
+[ext_resource type="LabelSettings" uid="uid://b4otkanf75ria" path="res://themes/game_message_label_settings.tres" id="20_obbds"]
+[ext_resource type="LabelSettings" uid="uid://csqnmvr1oral8" path="res://themes/starve_time_label_settings.tres" id="21_v6stp"]
 
 [node name="sign_world" type="Node2D"]
 script = ExtResource("1_tahyx")
@@ -100,9 +100,6 @@ position = Vector2(-392, 240)
 [node name="ground" parent="objects" instance=ExtResource("2_nw6t4")]
 position = Vector2(-74, 298)
 
-[node name="survival_girl" parent="." instance=ExtResource("6_kom1c")]
-position = Vector2(75, 495)
-
 [node name="starving_timer" type="Timer" parent="."]
 script = ExtResource("8_a1rqe")
 starve_time = 12.0
@@ -111,38 +108,38 @@ starve_time = 12.0
 script = ExtResource("6_u7uiv")
 
 [node name="label_watch_out" type="Label" parent="sign_world_canvas"]
-offset_left = 328.0
-offset_top = 310.0
-offset_right = 614.0
-offset_bottom = 355.0
+offset_left = 384.0
+offset_top = 432.0
+offset_right = 695.0
+offset_bottom = 477.0
 text = "Wat-ta-cch ouu-uut!!!!"
-label_settings = ExtResource("6_e6rxa")
+label_settings = ExtResource("20_obbds")
 
 [node name="label_starved" type="Label" parent="sign_world_canvas"]
-offset_left = 436.0
-offset_top = 279.0
-offset_right = 688.0
-offset_bottom = 340.0
+offset_left = 464.0
+offset_top = 480.0
+offset_right = 716.0
+offset_bottom = 541.0
 text = "Starved!"
-label_settings = ExtResource("9_qulp1")
+label_settings = ExtResource("20_obbds")
 
 [node name="container_starve_countdown" type="HBoxContainer" parent="sign_world_canvas"]
-offset_left = 26.0
-offset_top = 35.0
-offset_right = 338.0
-offset_bottom = 80.0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 344.0
+offset_bottom = 77.0
 
 [node name="label_text" type="Label" parent="sign_world_canvas/container_starve_countdown"]
 layout_mode = 2
 text = "Time until you stave: "
-label_settings = ExtResource("6_e6rxa")
+label_settings = ExtResource("21_v6stp")
 
 [node name="label_starve_time" type="Label" parent="sign_world_canvas/container_starve_countdown"]
 layout_mode = 2
-label_settings = ExtResource("6_e6rxa")
+label_settings = ExtResource("21_v6stp")
 
 [node name="cutscene" parent="." instance=ExtResource("8_2um15")]
-visible = false
+layer = 5
 
 [connection signal="sign_falls" from="objects/sign/sign_moving_part" to="." method="_on_sign_moving_part_sign_falls"]
 [connection signal="dead" from="objects/character" to="." method="_on_character_dead"]

@@ -6,8 +6,8 @@ extends CanvasLayer
 @onready var label_starve_countdown = $container_starve_countdown/label_starve_time
 
 # resources
-@onready var label_setting_time_normal = load("res://themes/my_label_settings.tres")
-@onready var label_setting_time_highlight = load("res://themes/my_r_label_settings.tres")
+@onready var label_setting_time_normal = load("res://themes/starve_time_label_settings.tres")
+@onready var label_setting_time_highlight = load("res://themes/starve_time_r_label_settings.tres")
 
 # highlight
 var is_highlighting_starve_countdown = false
@@ -41,8 +41,18 @@ func reset():
 
 func set_starve_countdown(ct):
 
+	var t1 = int(int(ct) / 10)
+	t1 = str(t1) if t1 else "  " 
+	var t2 = str(int(ct) % 10)
+	var t3 = str(int(ct * 10) % 10)
+
+	# time string
+	var time_str = "" + t1 + t2 + "." + t3
+
+	#round(num * pow(10.0, digit)) / pow(10.0, digit)
+
 	# set time
-	label_starve_countdown.text = str(int(ct))
+	label_starve_countdown.text = time_str
 
 
 func update_starve_countdown(actual_starving_time : float):
@@ -84,7 +94,3 @@ func show_label_starved():
 
 func hide_label_starved():
 	label_starved.hide()
-
-
-#func round_to_dec(num, digit):
-#	return round(num * pow(10.0, digit)) / pow(10.0, digit)

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/cutscene.gd" id="1_m1pff"]
 [ext_resource type="LabelSettings" uid="uid://denjg7jfcrvdm" path="res://themes/cutscene_big_label_settings.tres" id="2_xfxmc"]
 [ext_resource type="LabelSettings" uid="uid://b2waffgbqbfum" path="res://themes/cutscene_small_label_settings.tres" id="3_k1t3g"]
-[ext_resource type="LabelSettings" uid="uid://c14nasa0o851q" path="res://themes/cutscene_big_r_label_settings.tres" id="4_4pr81"]
+[ext_resource type="LabelSettings" uid="uid://c14nasa0o851q" path="res://themes/big_r_label_settings.tres" id="4_4pr81"]
 [ext_resource type="LabelSettings" uid="uid://cshdwynvo6bg1" path="res://themes/cutscene_small_r_label_settings.tres" id="5_68fcv"]
 
 [node name="cutscene" type="CanvasLayer"]
@@ -15,13 +15,14 @@ offset_top = -8.0
 offset_right = 1032.0
 offset_bottom = 776.0
 color = Color(0, 0, 0, 0)
+metadata/_edit_use_anchors_ = true
 
 [node name="full_dark_timer" type="Timer" parent="."]
 
 [node name="blackout_labels_next_generation" type="VBoxContainer" parent="."]
-offset_left = 363.0
+offset_left = 307.0
 offset_top = 216.0
-offset_right = 774.0
+offset_right = 718.0
 offset_bottom = 326.0
 
 [node name="t1" type="Label" parent="blackout_labels_next_generation"]
@@ -37,10 +38,10 @@ label_settings = ExtResource("3_k1t3g")
 horizontal_alignment = 1
 
 [node name="blackout_labels_last_generation" type="VBoxContainer" parent="."]
-offset_left = 320.0
+offset_left = 264.0
 offset_top = 216.0
-offset_right = 814.0
-offset_bottom = 326.0
+offset_right = 758.0
+offset_bottom = 453.0
 
 [node name="t1" type="Label" parent="blackout_labels_last_generation"]
 layout_mode = 2
@@ -82,19 +83,16 @@ label_settings = ExtResource("5_68fcv")
 horizontal_alignment = 1
 
 [node name="blackout_labels_won_the_game" type="VBoxContainer" parent="."]
-offset_left = 363.0
+offset_left = 307.0
 offset_top = 216.0
-offset_right = 774.0
-offset_bottom = 326.0
+offset_right = 718.0
+offset_bottom = 348.0
 
 [node name="t1" type="Label" parent="blackout_labels_won_the_game"]
 layout_mode = 2
 text = "You Won!"
 label_settings = ExtResource("2_xfxmc")
 horizontal_alignment = 1
-
-[node name="none2" type="MarginContainer" parent="blackout_labels_won_the_game"]
-layout_mode = 2
 
 [node name="t2" type="Label" parent="blackout_labels_won_the_game"]
 layout_mode = 2

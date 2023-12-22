@@ -15,18 +15,21 @@ var is_dying = false
 var is_dead = false
 
 # refs
-@onready var sprites = $sprites 
+@onready var sprites = $body/sprites 
 @onready var blink_timer = $blink_timer
 @onready var blink_duration_timer = $blink_duration_timer
 @onready var dead_timer = $dead_timer
 @onready var sfx_dying = $sfx_dying
 @onready var sfx_dying_special = $sfx_dying_special
+@onready var anim = $anim
 
 # anim names
 const anim_cavemen_sitting = "cavemen_sitting"
 const anim_cavemen_blinking = "cavemen_blinking"
 const anim_cavemen_dying = "cavemen_dying"
 const anim_cavemen_dying_2 = "cavemen_dying-2"
+
+const anim_die_collection = ["die_v0"]
 
 # base blink time
 const blink_time_min = 1.0
@@ -96,6 +99,9 @@ func set_state_dying():
 
 	# dead timer
 	dead_timer.start(dying_time)
+
+	# start animation
+	anim.play(anim_die_collection[0])
 
 
 func reset_state_dying():

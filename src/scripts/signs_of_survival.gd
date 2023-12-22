@@ -13,7 +13,7 @@ extends Node2D
 var is_playing = false
 
 # time to show win canvas
-const win_canvas_on_time = 8.0
+const win_canvas_on_time = 12.0
 
 
 func _ready():
@@ -22,6 +22,7 @@ func _ready():
 	if is_start_scene_game: title_canvas_off()
 	else: title_canvas_on()
 	credits_canvas_off()
+	win_canvas_off()
 
 	# is playing
 	is_playing = false

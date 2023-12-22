@@ -16,9 +16,11 @@ script = ExtResource("1_7apyc")
 visible = false
 
 [node name="title_canvas" parent="." instance=ExtResource("3_yxjj7")]
+layer = 2
 visible = false
 
 [node name="credits_canvas" parent="." instance=ExtResource("4_qwar0")]
+layer = 2
 visible = false
 
 [node name="win_canvas" parent="." instance=ExtResource("6_ob7jf")]

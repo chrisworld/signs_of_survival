@@ -40,13 +40,21 @@ offset_bottom = 392.0
 text = "Eworhard"
 label_settings = ExtResource("5_mg5vh")
 
-[node name="art" type="Label" parent="cavemen/eworhard/eworhard"]
+[node name="VBoxContainer" type="VBoxContainer" parent="cavemen/eworhard/eworhard"]
 layout_mode = 0
-offset_left = 9.0
+offset_left = 10.0
 offset_top = 50.0
-offset_right = 447.0
-offset_bottom = 92.0
+offset_right = 50.0
+offset_bottom = 90.0
+
+[node name="art" type="Label" parent="cavemen/eworhard/eworhard/VBoxContainer"]
+layout_mode = 2
 text = "| Art"
+label_settings = ExtResource("5_dotqj")
+
+[node name="art2" type="Label" parent="cavemen/eworhard/eworhard/VBoxContainer"]
+layout_mode = 2
+text = "| Sound Effects"
 label_settings = ExtResource("5_dotqj")
 
 [node name="gartenschlaefer" type="Node2D" parent="cavemen"]
@@ -66,13 +74,21 @@ offset_bottom = 392.0
 text = "Gartenschläfer"
 label_settings = ExtResource("5_mg5vh")
 
-[node name="prog" type="Label" parent="cavemen/gartenschlaefer/gartenschlaefer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="cavemen/gartenschlaefer/gartenschlaefer"]
 layout_mode = 0
 offset_left = 10.0
 offset_top = 50.0
-offset_right = 448.0
-offset_bottom = 92.0
+offset_right = 128.0
+offset_bottom = 100.0
+
+[node name="prog" type="Label" parent="cavemen/gartenschlaefer/gartenschlaefer/VBoxContainer2"]
+layout_mode = 2
 text = "| Programming"
+label_settings = ExtResource("5_dotqj")
+
+[node name="med" type="Label" parent="cavemen/gartenschlaefer/gartenschlaefer/VBoxContainer2"]
+layout_mode = 2
+text = "| Meditating"
 label_settings = ExtResource("5_dotqj")
 
 [node name="back_button" type="Button" parent="."]

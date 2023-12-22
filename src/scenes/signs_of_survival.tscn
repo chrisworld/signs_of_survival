@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://12qgse0h2mtc"]
+[gd_scene load_steps=7 format=3 uid="uid://12qgse0h2mtc"]
 
 [ext_resource type="Script" path="res://scripts/signs_of_survival.gd" id="1_7apyc"]
 [ext_resource type="PackedScene" uid="uid://darymjq32xhe2" path="res://scenes/sign_world.tscn" id="1_jygnp"]
 [ext_resource type="PackedScene" uid="uid://crrty8acvaxxa" path="res://scenes/pause_menu.tscn" id="3_b0irn"]
 [ext_resource type="PackedScene" uid="uid://vosw76xv3ox2" path="res://scenes/title.tscn" id="3_yxjj7"]
 [ext_resource type="PackedScene" uid="uid://bdkgnf2cy82tj" path="res://scenes/credits.tscn" id="4_qwar0"]
+[ext_resource type="PackedScene" uid="uid://c1vr3pq5euxvq" path="res://scenes/win_canvas.tscn" id="6_ob7jf"]
 
 [node name="signs_of_survival" type="Node2D"]
 script = ExtResource("1_7apyc")
@@ -20,6 +21,12 @@ visible = false
 [node name="credits_canvas" parent="." instance=ExtResource("4_qwar0")]
 visible = false
 
+[node name="win_canvas" parent="." instance=ExtResource("6_ob7jf")]
+layer = 2
+visible = false
+
+[node name="win_canvas_on_timer" type="Timer" parent="win_canvas"]
+
 [connection signal="loose_cutscene_full_dark" from="sign_world" to="." method="_on_sign_world_loose_cutscene_full_dark"]
 [connection signal="win_cutscene_full_dark" from="sign_world" to="." method="_on_sign_world_win_cutscene_full_dark"]
 [connection signal="go_to_title" from="pause_canvas" to="." method="_on_pause_canvas_go_to_title"]
@@ -27,3 +34,4 @@ visible = false
 [connection signal="end_game" from="title_canvas" to="." method="_on_title_canvas_end_game"]
 [connection signal="start_game" from="title_canvas" to="." method="_on_title_canvas_start_game"]
 [connection signal="end_credits" from="credits_canvas" to="." method="_on_credits_canvas_end_credits"]
+[connection signal="timeout" from="win_canvas/win_canvas_on_timer" to="." method="_on_win_canvas_on_timer_timeout"]

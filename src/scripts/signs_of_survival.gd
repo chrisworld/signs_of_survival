@@ -7,9 +7,13 @@ extends Node2D
 @onready var sign_world = $sign_world
 @onready var title_canvas = $title_canvas
 @onready var credits_canvas = $credits_canvas
+@onready var win_canvas = $win_canvas
 
 # playing flag
 var is_playing = false
+
+# time to show win canvas
+const win_canvas_on_time = 8.0
 
 
 func _ready():
@@ -103,6 +107,27 @@ func credits_canvas_off():
 	credits_canvas.hide()
 
 
+func win_canvas_on():
+
+	# activate
+	is_playing = false
+
+	# show
+	win_canvas.show()
+
+	# pause
+	sign_world.pause_world()
+
+	# timer
+	$win_canvas/win_canvas_on_timer.start(win_canvas_on_time)
+
+
+func win_canvas_off():
+
+	# show
+	win_canvas.hide()
+
+
 # --
 # signals
 
@@ -137,9 +162,16 @@ func _on_sign_world_loose_cutscene_full_dark():
 
 
 func _on_sign_world_win_cutscene_full_dark():
+	credits_canvas_off()
 	title_canvas_off()
-	credits_canvas_on()
+	#credits_canvas_on()
+	win_canvas_on()
 
 
 func _on_pause_canvas_go_to_title():
 	title_canvas_on()
+
+
+func _on_win_canvas_on_timer_timeout():
+	win_canvas_off()
+	credits_canvas_on()

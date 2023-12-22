@@ -38,6 +38,9 @@ func _ready():
 	# win condition
 	won_the_game_flag = false
 
+	# start starving timer
+	starving_timer.start_timer_from_new()
+
 
 func _process(_delta):
 
@@ -112,9 +115,12 @@ func _reset_for_next_generation():
 	# new background
 	background.frame = character.get_generation()
 
-	# sign falling visibles
-	sign_static_part.visible = false
+	# sign falling visible
+	sign_static_part.hide()
 
+	# reset starving timer
+	starving_timer.reset_time()
+	
 	# canvas
 	sign_world_canvas.reset()
 
@@ -125,7 +131,7 @@ func _reset_for_next_generation():
 # --
 # signals
 
-func _on_sign_sign_falls():
+func _on_sign_moving_part_sign_falls():
 
 	# sign falling visibles
 	sign_static_part.show()
@@ -190,7 +196,7 @@ func _on_cutscene_cutscene_finished():
 	if is_last_generation_dead: return
 
 	# start timer again
-	starving_timer.reset_time()
+	starving_timer.start_timer_from_new()
 
 
 func _on_character_last_generation():

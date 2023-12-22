@@ -41,7 +41,7 @@ func reset():
 
 func set_starve_countdown(ct):
 
-	var t1 = int(int(ct) / 10)
+	var t1 = int(int(ct) / 10.0)
 	t1 = str(t1) if t1 else "  " 
 	var t2 = str(int(ct) % 10)
 	var t3 = str(int(ct * 10) % 10)

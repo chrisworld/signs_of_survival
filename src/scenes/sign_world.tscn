@@ -82,7 +82,7 @@ stream = ExtResource("11_hixvp")
 volume_db = 20.0
 
 [node name="physics_hack" type="StaticBody2D" parent="objects/sign"]
-position = Vector2(79, 49)
+position = Vector2(78, 51)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="objects/sign/physics_hack"]
 shape = SubResource("RectangleShape2D_t2yta")
